@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import ai.TrollAI;
@@ -7,7 +11,6 @@ import animation.TrollAnimation;
 import gameState.GameStateManager;
 import math.Vec2;
 import misc.GlobalController;
-import physics.Collidable;
 import physics.DynamicPhysicsData;
 import physics.Manifold;
 
@@ -24,7 +27,6 @@ public class Troll extends Entity{
 		anim = new TrollAnimation(this);
 		level = 1;
 		first = true;
-		//changeToOne();
 	}
 	
 	public void reset(){
@@ -40,7 +42,6 @@ public class Troll extends Entity{
 			((TrollAI)ai).active = true;
 			((TrollAI)ai).moveTo = new Vec2(500,200);
 			((TrollAI)ai).moveToSpace = true;
-			//((TrollAI)ai).reset();
 		}
 	}
 	
@@ -48,7 +49,6 @@ public class Troll extends Entity{
 		level = 1;
 		TrollAnimation an = (TrollAnimation)anim;
 		an.switchToFace1();
-		//((TrollAI)ai).setChances(1);
 	}
 	
 	public void changeToTwo(){
@@ -77,7 +77,6 @@ public class Troll extends Entity{
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
 				ref.extraAnimations.add(new LimitAnimation(a,fold.one.pd.pos,30,true));
-				
 				p.invulnerable = true;
 				p.invulnerableTimer = 20;
 			}

@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package gameState;
 
 import java.awt.Color;
@@ -47,17 +51,9 @@ public class GameStateManager {
 		musicCred = "Music : Carson Carter";
 		sound = new SoundEngine();
 		level = 0;
-		//joystick = new Joystick(new Vec2(400,600),new Vec2());
-		//startButton = new UIButton(new Vec2(200,600),new Vec2());
-		//selectButton = new UIButton(new Vec2(), new Vec2());
-		//aButton = new UIButton(new Vec2(), new Vec2());
-		//bButton = new UIButton(new Vec2(), new Vec2());
 		GlobalController.initToOne();
 		startMusic();
 		transitionToInit();
-		//startMusic();
-		//transitionToInit();
-		//transitionToLevel10();
 	}
 	
 	public void startMusic(){
@@ -67,11 +63,6 @@ public class GameStateManager {
 	public void setRefForStuff(){
 		player.ref = currentLevel;
 		troll.ref = currentLevel;
-		//joystick.ref = currentLevel;
-		//startButton.ref = currentLevel;
-		//selectButton.ref = currentLevel;
-		//aButton.ref = currentLevel;
-		//bButton.ref = currentLevel;
 		joystick = new Joystick(currentLevel,new Vec2(70,507),new Vec2());
 		startButton = new UIButton(currentLevel,new Vec2(300,595),new Vec2(),0);
 		selectButton = new UIButton(currentLevel,new Vec2(440,595), new Vec2(),1);
@@ -186,55 +177,5 @@ public class GameStateManager {
 		currentLevel = new LevelThree(this, player, troll);
 		currentLevel.init();
 		setRefForStuff();
-	}
-
-	public void transitionToLevel4(){
-		parser.clearCache();
-		currentLevel = new LevelFour(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-	}
-
-	public void transitionToLevel5(){
-		parser.clearCache();
-		currentLevel = new LevelFive(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-	}
-
-	public void transitionToLevel6(){
-		parser.clearCache();
-		currentLevel = new LevelSix(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-	}
-
-	public void transitionToLevel7(){
-		parser.clearCache();
-		currentLevel = new LevelSeven(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-	}
-
-	public void transitionToLevel8(){
-		parser.clearCache();
-		currentLevel = new LevelEight(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-	}
-
-	public void transitionToLevel9(){
-		parser.clearCache();
-		currentLevel = new LevelNine(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-	}
-
-	public void transitionToLevel10(){
-		parser.clearCache();
-		currentLevel = new LevelTen(this, player, troll);
-		currentLevel.init();
-		setRefForStuff();
-		// start here
 	}
 }

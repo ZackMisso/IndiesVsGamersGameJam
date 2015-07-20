@@ -1,8 +1,9 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
-
-import java.awt.Color;
 import java.awt.Graphics2D;
-
 import gameState.Level;
 import math.Vec2;
 import physics.Collidable;
@@ -17,20 +18,8 @@ public class InvisEntity extends Entity implements Collidable{
 		pd = new SimplePhysicsData(pos,siz);
 	}
 	
-	public void update(){
-		
-	}
-	
-	public void draw(Graphics2D g){
-		//g.setColor(Color.BLACK);
-		//g.drawRect((int)pd.pos.x,(int)pd.pos.y,(int)pd.siz.x,(int)pd.siz.y);
-	}
-	
-	public void handleManifold(Manifold fold){
-		
-	}
-	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void update(){	}
+	public void draw(Graphics2D g){}
+	public void handleManifold(Manifold fold){}
+	public void resetToDefaultAnimation(){}
 }

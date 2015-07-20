@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import java.awt.Color;
@@ -29,7 +33,6 @@ public class Player extends Entity{
 		invulnerableTimer = 0;
 		invulnerable = false;
 		flip = true;
-		//pd.cb = null;
 	}
 	
 	public void update(){
@@ -40,7 +43,6 @@ public class Player extends Entity{
 				invulnerable = false;
 			}
 		}
-		// maybe
 	}
 	
 	public void switchToFalling(){
@@ -58,10 +60,7 @@ public class Player extends Entity{
 	}
 	
 	public void handleManifold(Manifold fold){
-		//System.out.println("Pen "+fold.pen.toString());
-		//System.out.println("Pos "+pd.pos.toString());
 		if(fold.two instanceof Collidable){
-			//System.out.println("Colliding");
 			if(fold.norm.x != 0){
 				fold.pen.x *= fold.norm.x;
 				fold.pen.x += fold.norm.x;
@@ -70,7 +69,6 @@ public class Player extends Entity{
 				else
 					collidingRight = true;
 				((DynamicPhysicsData)pd).vel.x = 0;
-				//((DynamicPhysicsData)pd).acc.x = 0;
 			}
 			if(fold.norm.y != 0){
 				fold.pen.y *= fold.norm.y;
@@ -82,14 +80,9 @@ public class Player extends Entity{
 					jumping = false;
 				}
 				((DynamicPhysicsData)pd).vel.y = 0;
-				//((DynamicPhysicsData)pd).acc.y = 0;
 			}
 			pd.pos.add(fold.pen);
 		}
-		//System.out.println("Pos "+pd.pos.toString());
-		//if(fold.pen.x != 0.0f && fold.pen.y != 0.0f){
-		//	System.out.println("Resolving");
-		//}
 	}
 	
 	public void resetToDefaultAnimation(){

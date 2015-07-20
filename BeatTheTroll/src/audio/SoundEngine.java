@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package audio;
 
 import javax.sound.sampled.AudioInputStream;

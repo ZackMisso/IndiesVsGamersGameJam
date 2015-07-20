@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package ai;
 
 import animation.ButtonAnimation;
@@ -10,13 +14,7 @@ public class ButtonAI implements ReactToInputAI{
 		button = param;
 	}
 	
-	public void update(){
-		
-	}
-	
-	public void reactToMouse(int x, int y){
-		
-	}
+	public void update(){}
 	
 	public void reactToKey(char key, boolean release){
 		if(button.index == 0){

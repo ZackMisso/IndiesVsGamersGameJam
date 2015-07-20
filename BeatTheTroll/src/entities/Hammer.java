@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import animation.HammerAnimation;
@@ -45,9 +49,8 @@ public class Hammer extends Entity{
 	
 	public void update(){
 		super.update();
-		if(this.outOfBounds()){
+		if(this.outOfBounds())
 			ref.entitiesToRemove.add(this);
-		}
 	}
 	
 	public void handleManifold(Manifold fold){
@@ -66,7 +69,5 @@ public class Hammer extends Entity{
 		}
 	}
 	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void resetToDefaultAnimation(){}
 }

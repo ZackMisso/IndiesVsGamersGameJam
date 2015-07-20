@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import ai.JoystickAI;
@@ -16,11 +20,6 @@ public class Joystick extends Entity{
 		ai = new JoystickAI(this);
 	}
 	
-	public void handleManifold(Manifold fold){
-		
-	}
-	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void handleManifold(Manifold fold){}
+	public void resetToDefaultAnimation(){}
 }

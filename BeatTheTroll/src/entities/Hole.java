@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import animation.HoleAnimation;
@@ -21,14 +25,9 @@ public class Hole extends Entity{
 	}
 	
 	public void handleManifold(Manifold fold){
-		//System.out.println("HIT HOLE");
-		if(fold.one instanceof Player){
-			//System.out.println("HOLE HIT");
+		if(fold.one instanceof Player)
 			ref.gsm.transition();
-		}
 	}
 	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void resetToDefaultAnimation(){}
 }

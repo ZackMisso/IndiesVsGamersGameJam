@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package ai;
 
 import entities.Blast;
@@ -9,7 +13,7 @@ import math.Vec2;
 import misc.RNG;
 import physics.DynamicPhysicsData;
 
-public class TrollAI implements ReactToPlayerAI{
+public class TrollAI implements AI{
 	public Troll troll;
 	public float accuracy;
 	public float chanceMoveX; // out of 100
@@ -432,9 +436,5 @@ public class TrollAI implements ReactToPlayerAI{
 				speed = 6f;
 			}
 		}
-	}
-	
-	public void reactToPlayer(Player player){
-		
 	}
 }

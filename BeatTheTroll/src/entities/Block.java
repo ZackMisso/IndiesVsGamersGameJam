@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import animation.BlockAnimation;
@@ -15,23 +19,6 @@ public class Block extends Entity implements Collidable{
 		pd = new SimplePhysicsData(pos, new Vec2(32,32));
 	}
 	
-	//public BlockTest(){
-	//	super(null);
-	//	anim = new TestAnimation(this, Color.RED);
-	//	ai = null;
-	//	pd = new SimplePhysicsData(new Vec2(300,500),new Vec2(32,32));
-	//	//pd.cb = null;
-	//}
-	
-	//public void update(){
-	//	
-	//}
-	
-	public void handleManifold(Manifold fold){
-		
-	}
-	
-	public void resetToDefaultAnimation(){
-		//anim = new TestAnimation(this, Color.RED);
-	}
+	public void handleManifold(Manifold fold){}
+	public void resetToDefaultAnimation(){}
 }

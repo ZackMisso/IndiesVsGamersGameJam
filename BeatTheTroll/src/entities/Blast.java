@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import animation.BlastAnimation;
@@ -6,7 +10,6 @@ import animation.TextAnimation;
 import gameState.Level;
 import math.Vec2;
 import misc.GlobalController;
-import physics.Collidable;
 import physics.DynamicPhysicsData;
 import physics.Manifold;
 import tests.PlayerTest;
@@ -33,10 +36,8 @@ public class Blast extends Entity{
 	
 	public void update(){
 		super.update();
-		if(this.outOfBounds()){
+		if(this.outOfBounds())
 			ref.entitiesToRemove.add(this);
-			//System.out.println("OUT OF BOUNDS");
-		}
 	}
 	
 	public void handleManifold(Manifold fold){
@@ -48,14 +49,11 @@ public class Blast extends Entity{
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
 				ref.extraAnimations.add(new LimitAnimation(a,fold.one.pd.pos,30,true));
-				
 				p.invulnerable = true;
 				p.invulnerableTimer = 20;
 			}
 		}
 	}
 	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void resetToDefaultAnimation(){}
 }

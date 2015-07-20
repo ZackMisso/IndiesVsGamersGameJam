@@ -1,11 +1,13 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package gameState;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-
 import ai.ReactToInputAI;
-import ai.ReactToPlayerAI;
 import animation.LimitAnimation;
 import entities.Entity;
 import entities.Player;
@@ -19,7 +21,6 @@ public abstract class Level {
 	public ArrayList<Entity> playerObj;
 	public ArrayList<Entity> enemyObj;
 	public ArrayList<ReactToInputAI> aiInput;
-	public ArrayList<ReactToPlayerAI> aiPlayer;
 	public ArrayList<LimitAnimation> extraAnimations;
 	public ArrayList<Entity> entitiesToRemove;
 	public Troll troll;
@@ -31,17 +32,16 @@ public abstract class Level {
 		gsm = g;
 		player = p;
 		if(p!=null)
-		player.ref = this;
+			player.ref = this;
 		troll = t;
 		if(t != null)
-		troll.ref = this;
+			troll.ref = this;
 		bg = null;
 		offset = new Vec2();
 		gameEntities = new ArrayList<>();
 		playerObj = new ArrayList<>();
 		enemyObj = new ArrayList<>();
 		aiInput = new ArrayList<>();
-		aiPlayer = new ArrayList<>();
 		extraAnimations = new ArrayList<>();
 		entitiesToRemove = new ArrayList<>();
 		restart = false;
@@ -69,10 +69,7 @@ public abstract class Level {
 			player.draw(g);
 	}
 	
-	public void handleClick(int x, int y){
-		for(int i=0;i<aiInput.size();i++)
-			aiInput.get(i).reactToMouse(x, y);
-	}
+	public void handleClick(int x, int y){} // The game ended up not using Mouse clicks
 	
 	public void handleKey(char key, boolean release){
 		for(int i=0;i<aiInput.size();i++)

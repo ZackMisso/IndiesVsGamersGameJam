@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package physics;
 
 import java.util.ArrayList;
@@ -7,7 +11,6 @@ import entities.Hole;
 import math.Functions;
 import math.Vec2;
 
-
 public class CollisionEngine {
 	private Manifold hack;
 	
@@ -15,7 +18,6 @@ public class CollisionEngine {
 		hack = null;
 	}
 	
-	//public ArrayList<Manifold>
 	public void update(Entity player, Entity troll, ArrayList<Entity> entities){
 		if(player != null){
 			ArrayList<Manifold> mans = findCollisions(player, entities);
@@ -25,8 +27,6 @@ public class CollisionEngine {
 			Manifold man = new Manifold(player, troll);
 			mans.add(man);
 			resolveManifolds(mans);
-		//	ArrayList<Manifold> mans = findCollisions(troll, entities);
-		//	resolveManifolds(mans);
 		}
 	}
 	
@@ -41,8 +41,6 @@ public class CollisionEngine {
 	public ArrayList<Manifold> findCollisions(Entity entity, ArrayList<Entity> entities){
 		ArrayList<Manifold> mans = new ArrayList<>();
 		for(int i=0;i<entities.size();i++){
-			//if(entities.get(i)instanceof Hole)
-			//	System.out.println("Found Hole");
 			if(entity != entities.get(i)){
 				hack = checkCollisionAABB(entity, entities.get(i));
 				if(hack != null)
@@ -56,8 +54,6 @@ public class CollisionEngine {
 		for(int i=0;i<folds.size();i++){
 			Entity one = folds.get(i).one;
 			Entity two = folds.get(i).two;
-			//if(folds.get(i).two instanceof Hole)
-			//	System.out.println("Found Hole");
 			Vec2 n = one.pd.cent().add(two.pd.cent().neg(true), true);
 			float oneExtent = one.pd.siz.x / 2;
 			float twoExtent = two.pd.siz.x / 2;
@@ -67,8 +63,6 @@ public class CollisionEngine {
 				twoExtent = two.pd.siz.y / 2;
 				float yOverlap = twoExtent + oneExtent - Functions.abs(n.y);
 				if(yOverlap > 0){
-					//if(folds.get(i).two instanceof Hole)
-					//	System.out.println("Found Hole");
 					if(Functions.abs(xOverlap) >= Functions.abs(yOverlap)){
 						Manifold fold = folds.get(i);
 						if(n.y > 0)

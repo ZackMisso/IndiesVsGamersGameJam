@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package physics;
 
 import math.Vec2;
@@ -17,18 +21,12 @@ public class DynamicPhysicsData extends PhysicsData{
 	}
 	
 	public void update(){
-		//System.out.println(pos);
 		pos.add(vel);
-		//System.out.println(pos);
 		vel.add(acc);
-		if(vel.x > maxVel.x){
+		if(vel.x > maxVel.x)
 			vel.x = maxVel.x;
-			//System.out.println("Wjat");
-			//System.out.println(maxVel.x);
-		}
 		if(vel.y > maxVel.y)
 			vel.y = maxVel.y;
-		//System.out.println(vel);
 		if(vel.x < -maxVel.x)
 			vel.x = -maxVel.x;
 		if(vel.y < -maxVel.y)

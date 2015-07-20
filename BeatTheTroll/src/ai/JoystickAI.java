@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package ai;
 
 import animation.JoystickAnimation;
@@ -10,14 +14,7 @@ public class JoystickAI implements ReactToInputAI{
 		stick = param;
 	}
 	
-	public void update(){
-		
-	}
-	
-	public void reactToMouse(int x, int y){
-		//JoystickAnimation an = (JoystickAnimation)stick.anim;
-		//an.
-	}
+	public void update(){}
 	
 	public void reactToKey(char key, boolean release){
 		if(key == 'a' || key == 'd'){

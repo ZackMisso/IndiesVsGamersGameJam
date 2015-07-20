@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import java.awt.Graphics2D;
@@ -98,10 +102,6 @@ public abstract class Entity {
 	}
 	
 	public void draw(Graphics2D g){
-		//if(pd == null)
-		//	System.out.println("PD is null");
-		//if(pd.pos == null)
-		//	System.out.println("Pos is null");
 		if(ref!=null)
 			anim.draw(g, pd.pos.add(ref.offset.neg(true),false));
 		else

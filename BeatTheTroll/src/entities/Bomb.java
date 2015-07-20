@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import animation.BombAnimation;
@@ -33,22 +37,12 @@ public class Bomb extends Entity{
 				explode();
 				ref.entitiesToRemove.add(this);
 			}
-		}else{
-			if(this.outOfBounds()){
+		}else
+			if(this.outOfBounds())
 				ref.entitiesToRemove.add(this);
-				//System.out.println("OUT OF BOUNDS");
-			}
-		}
 	}
 	
 	public void explode(){
-		//ref.extraAnimations.add(new ExplosionAnimation());
-		//if(ref == null)
-		//	System.out.println("Ref is null\n");
-		//if(pd == null)
-		//	System.out.println("PD is null");
-		//if(pd.pos == null)
-		//	System.out.println("Pos is null\n");
 		pd.pos.x -= 4;
 		ref.extraAnimations.add(new LimitAnimation(new ExplosionAnimation(ref,pd.pos),pd.pos,40,true));
 		
@@ -64,14 +58,11 @@ public class Bomb extends Entity{
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
 				ref.extraAnimations.add(new LimitAnimation(a,fold.one.pd.pos,30,true));
-				
 				p.invulnerable = true;
 				p.invulnerableTimer = 20;
 			}
 		}
 	}
 	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void resetToDefaultAnimation(){}
 }

@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package misc;
 
 import java.util.Random;
@@ -16,8 +20,6 @@ public class RNG {
 	public static float getNextFloat(){
 		if(index != 0)
 			return vals[index--];
-		//if(ran == null)
-		//	System.out.println("WHAT\n");
 		return ran.nextFloat();
 	}
 	
@@ -28,8 +30,7 @@ public class RNG {
 	}
 	
 	public static boolean getNextBool(){
-		float tmp = getNextFloat();
-		if(tmp > .5f)
+		if(getNextFloat() > .5f)
 			return true;
 		return false;
 	}

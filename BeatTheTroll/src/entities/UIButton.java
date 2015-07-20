@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import ai.ButtonAI;
@@ -19,23 +23,7 @@ public class UIButton extends Entity{
 		index = in;
 	}
 	
-	public void update(){
-		
-	}
-	
-	public void reactToMouse(int x, int y){
-		
-	}
-	
-	public void reactToKey(char key, boolean release){
-		
-	}
-	
-	public void handleManifold(Manifold fold){
-		
-	}
-	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void update(){}
+	public void handleManifold(Manifold fold){}
+	public void resetToDefaultAnimation(){}
 }

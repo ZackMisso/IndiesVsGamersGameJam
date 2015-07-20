@@ -1,3 +1,7 @@
+// IndiesVsGamers Game Jam
+// Beat The Troll v.0.1.0
+// By: Zack Misso
+
 package entities;
 
 import ai.AI;
@@ -23,9 +27,7 @@ public class Explosion extends Entity{
 			harmful=false;
 	}
 	
-	public void handleManifold(Manifold fold){
-		
-	}
+	public void handleManifold(Manifold fold){}
 	
 	public void resetToDefaultAnimation(){
 		alive = false;
