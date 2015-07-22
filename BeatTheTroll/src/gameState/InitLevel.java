@@ -52,8 +52,8 @@ public class InitLevel extends Level{
 	public void logInToGameJolt(){}
 	
 	public void draw(Graphics2D g){
-		if(bg != null){
-			g.setColor(bg);
+		if(getBG() != null){
+			g.setColor(getBG());
 			g.fillRect(81, 121, 718, 478);
 		}
 		g.setColor(Color.GREEN);

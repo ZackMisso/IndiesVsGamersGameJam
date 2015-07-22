@@ -20,4 +20,12 @@ public abstract class PhysicsData {
 	}
 	
 	public abstract void update();
+	
+	// getter methods
+	public Vec2 getPos(){return pos;}
+	public Vec2 getSiz(){return siz;}
+	
+	// setter methods
+	public void setPos(Vec2 param){pos=param;}
+	public void setSiz(Vec2 param){siz=param;}
 }

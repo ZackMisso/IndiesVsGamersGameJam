@@ -25,8 +25,8 @@ public class Hole extends Entity{
 	}
 	
 	public void handleManifold(Manifold fold){
-		if(fold.one instanceof Player)
-			ref.gsm.transition();
+		if(fold.getOne() instanceof Player)
+			getRef().getGSM().transition();
 	}
 	
 	public void resetToDefaultAnimation(){}

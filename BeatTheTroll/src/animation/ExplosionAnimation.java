@@ -18,7 +18,7 @@ public class ExplosionAnimation extends Animation{
 		//images.add(lev.gsm.parser.getImage("Explosion"));
 		lev = param;
 		pos = param2;
-		images.add(lev.gsm.parser.getImage("Explosion"));
+		images.add(lev.getGSM().getParser().getImage("Explosion"));
 	}
 	
 	public void update(){

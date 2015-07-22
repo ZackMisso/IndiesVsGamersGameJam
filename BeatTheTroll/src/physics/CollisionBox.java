@@ -6,8 +6,9 @@ package physics;
 
 import math.Vec2;
 
+// This class was never used
+
 public class CollisionBox {
-	//public Vec2 offset;
 	private float reducMinx;
 	private float reducMaxx;
 	private float reducMiny;
@@ -40,4 +41,16 @@ public class CollisionBox {
 		Vec2 b = getNewDimension(dim);
 		return new Vec2(a.x + b.x / 2,a.y + b.y / 2);
 	}
+	
+	// getter methods
+	public float getReducMinX(){return reducMinx;}
+	public float getReducMaxX(){return reducMaxx;}
+	public float getReducMinY(){return reducMiny;}
+	public float getReducMaxY(){return reducMaxy;}
+	
+	// setter methods
+	public void setReducMinX(float param){reducMinx=param;}
+	public void setReducMaxX(float param){reducMaxx=param;}
+	public void setReducMinY(float param){reducMiny=param;}
+	public void setReducMaxY(float param){reducMaxy=param;}
 }

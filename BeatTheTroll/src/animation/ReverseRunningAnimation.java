@@ -34,8 +34,4 @@ public class ReverseRunningAnimation extends Animation{
 			}
 		}
 	}
-	
-	//public void draw(Graphics2D g, Vec2 pos){
-	//	
-	//}
 }

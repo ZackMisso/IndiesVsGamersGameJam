@@ -26,4 +26,7 @@ public class UIButton extends Entity{
 	public void update(){}
 	public void handleManifold(Manifold fold){}
 	public void resetToDefaultAnimation(){}
+	
+	// getter methods
+	public int getIndex() {return index;}
 }

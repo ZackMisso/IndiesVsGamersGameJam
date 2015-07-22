@@ -13,7 +13,7 @@ public class CloudAnimation extends Animation{
 	public CloudAnimation(GameStateManager ref){
 		super(null);
 		gsm = ref;
-		images.add(gsm.parser.getImage("Cloud"));
+		images.add(gsm.getParser().getImage("Cloud"));
 	}
 	
 	public void update(){}

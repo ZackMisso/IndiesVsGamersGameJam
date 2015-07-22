@@ -5,14 +5,15 @@
 package animation;
 
 import entities.Entity;
+import art.ImageParser;
 
 public class BlockAnimation extends Animation{
 	public BlockAnimation(Entity en, int type){
 		super(en);
 		if(type == 1)
-			images.add(en.ref.gsm.parser.getImage("Grass"));
+			images.add(en.getParser().getImage("Grass"));
 		else if(type == 2)
-			images.add(en.ref.gsm.parser.getImage("Block"));
+			images.add(en.getParser().getImage("Block"));
 	}
 	
 	public void update(){}

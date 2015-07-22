@@ -25,49 +25,41 @@ public class LevelThree extends Level{
 	
 	public LevelThree(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
-		bg = new Color(.2f,.3f,.5f);
-		transitionTimer = 30*60 * t.level; // one/two/three/four minute
+		setBG(new Color(.2f,.3f,.5f));
+		transitionTimer = 30*60 * t.getLevel(); // one/two/three/four minute
 		holeOpen = false;
 		cole=new CollisionEngine();
 	}
 	
 	public void init(){
-		troll.reset();
-		((TrollAI)troll.ai).setChances(3);
-		player.pd.pos = new Vec2(300,400);
-		player.switchToStanding();
+		getTroll().reset();
+		((TrollAI)getTroll().ai).setChances(3);
+		getPlayer().pd.pos = new Vec2(300,400);
+		getPlayer().switchToStanding();
 		for(int i=0;i<23;i++)
-			gameEntities.add(new Block(this,new Vec2(81 + i*32,536),1));
+			addEntity(new Block(this,new Vec2(81 + i*32,536),1));
 		for(int i=0;i<23;i++)
-			gameEntities.add(new Block(this,new Vec2(81 + i*32,568),1));
-		gameEntities.add(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
-		gameEntities.add(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
-		aiInput.add((ReactToInputAI)player.ai);
+			addEntity(new Block(this,new Vec2(81 + i*32,568),1));
+		addEntity(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
+		addEntity(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
+		addInputAI((ReactToInputAI)getPlayer().ai);
 		cole = new CollisionEngine();
 	}
 	
 	public void update(){
 		if(!holeOpen)
-			troll.update();
-		player.update();
-		cole.update(player, troll, gameEntities);
-			transitionTimer--;
-			for(int i=0;i<gameEntities.size();i++)
-				gameEntities.get(i).update();
-			for(int i=0;i<extraAnimations.size();i++){
-				extraAnimations.get(i).update();
-				if(extraAnimations.get(i).checkRemove())
-					extraAnimations.remove(i--);
-			}
-			for(int i = 0;i<entitiesToRemove.size();i++){
-				gameEntities.remove(entitiesToRemove.get(0));
-				entitiesToRemove.remove(0);
-			}
-			if(transitionTimer == 0){
-				gameEntities.add(new Hole(this,new Vec2(81,121),true));
-				holeOpen = true;
-			}
-			if(restart)
-				gsm.restart();
+			getTroll().update();
+		getPlayer().update();
+		updateCollisionEngine();
+		updateEntities();
+		updateExtraAnimations();
+		updateEntitiesToRemove();
+		transitionTimer--;
+		if(transitionTimer == 0){
+			addEntity(new Hole(this,new Vec2(81,121),true));
+			holeOpen = true;
+		}
+		if(getRestart())
+			getGSM().restart();
 	}
 }

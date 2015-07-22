@@ -73,4 +73,7 @@ public class GameThread extends JPanel implements Runnable {
 			}
 		}
 	}
+	
+	// getter methods
+	public GameStateManager getGSM(){return gsm;}
 }

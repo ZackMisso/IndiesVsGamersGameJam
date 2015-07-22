@@ -37,18 +37,18 @@ public class Blast extends Entity{
 	public void update(){
 		super.update();
 		if(this.outOfBounds())
-			ref.entitiesToRemove.add(this);
+			getRef().addEntityToRemove(this);
 	}
 	
 	public void handleManifold(Manifold fold){
-		if(fold.one instanceof Player || fold.one instanceof PlayerTest){
-			ref.entitiesToRemove.add(this);
-			Player p = (Player)fold.one;
+		if(fold.getOne() instanceof Player || fold.getOne() instanceof PlayerTest){
+			getRef().addEntityToRemove(this);
+			Player p = (Player)fold.getOne();
 			if(!p.invulnerable){
 				int val = GlobalController.level * 200;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
-				ref.extraAnimations.add(new LimitAnimation(a,fold.one.pd.pos,30,true));
+				getRef().addExtraAnimation(new LimitAnimation(a,fold.one.pd.pos,30,true));
 				p.invulnerable = true;
 				p.invulnerableTimer = 20;
 			}
@@ -56,4 +56,7 @@ public class Blast extends Entity{
 	}
 	
 	public void resetToDefaultAnimation(){}
+	
+	// getter methods
+	public boolean getReverse(){return reverse;}
 }

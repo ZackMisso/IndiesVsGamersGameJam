@@ -12,10 +12,7 @@ import physics.SimplePhysicsData;
 
 public class InvisEntity extends Entity implements Collidable{
 	public InvisEntity(Level lev,Vec2 pos,Vec2 siz){
-		super(lev);
-		anim = null;
-		ai = null;
-		pd = new SimplePhysicsData(pos,siz);
+		super(lev,null,new SimplePhysicsData(pos,siz),null);
 	}
 	
 	public void update(){}

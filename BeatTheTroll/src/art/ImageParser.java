@@ -46,9 +46,6 @@ public class ImageParser {
 			else{
 				try{
 					Image img = ImageIO.read(getClass().getResourceAsStream(loc+i+".png"));
-					if(img == null){
-						System.out.println("WAHT");
-					}
 					imgs.add(img);
 				}catch(IOException e){
 					System.out.println("Image Parser Error");

@@ -21,7 +21,7 @@ public class Explosion extends Entity{
 	}
 	
 	public void update(){
-		anim.update();
+		updateAnimation();
 		timer--;
 		if(timer==0)
 			harmful=false;
@@ -30,6 +30,6 @@ public class Explosion extends Entity{
 	public void handleManifold(Manifold fold){}
 	
 	public void resetToDefaultAnimation(){
-		alive = false;
+		setDead();
 	}
 }

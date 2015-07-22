@@ -54,17 +54,15 @@ public class Hammer extends Entity{
 	}
 	
 	public void handleManifold(Manifold fold){
-		if(fold.one instanceof Player || fold.one instanceof PlayerTest){
-			ref.entitiesToRemove.add(this);
-			Player p = (Player)fold.one;
-			if(!p.invulnerable){
+		if(fold.getOne() instanceof Player || fold.getOne() instanceof PlayerTest){
+			getRef().addEntityToRemove(this);
+			Player p = (Player)fold.getOne();
+			if(!p.getInvulnerable()){
 				int val = 50 * GlobalController.level;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation((-val)+"");
-				ref.extraAnimations.add(new LimitAnimation(a,fold.one.pd.pos,30,true));
-				
-				p.invulnerable = true;
-				p.invulnerableTimer = 20;
+				getRef().addExtraAnimation(new LimitAnimation(a,fold.one.pd.pos,30,true));
+				p.nowInvulnerable(20);
 			}
 		}
 	}

@@ -11,7 +11,6 @@ import tests.PlayerTest;
 public class PlayerAI implements ReactToInputAI{
 	private Player player;
 	private boolean right;
-	private boolean up;
 		
 	public PlayerAI(Player p){
 		player = p;
@@ -31,25 +30,25 @@ public class PlayerAI implements ReactToInputAI{
 				((DynamicPhysicsData)(player.pd)).vel.x = 0;
 			}
 		}else{
-			if(key == 'd' && !player.collidingRight){
+			if(key == 'd' && !player.getCollidingRight()){
 				((DynamicPhysicsData)(player.pd)).acc.x = .5f;
 				right = true;
-				player.collidingLeft = false;
-			}if(key == 's' && !player.collidingDown){
+				player.setCollidingLeft(false);
+			}if(key == 's' && !player.getCollidingDown()){
 				up = false;
-				player.collidingUp = false;
-				player.collidingRight = false;
-				player.collidingLeft = false;
+				player.setCollidingUp(false);
+				player.setCollidingRight(false);
+				player.setCollidingLeft(false);
 				((DynamicPhysicsData)(player.pd)).vel.y = ((DynamicPhysicsData)(player.pd)).maxVel.y;
-			}if(key == 'a' && !player.collidingLeft){
+			}if(key == 'a' && !player.getCollidingLeft()){
 				right = false;
-				player.collidingRight = false;
+				player.setCollidingRight(false);
 				((DynamicPhysicsData)(player.pd)).acc.x = -.5f;
-			}if((key == 'w' || key == ' ') && !player.collidingUp && !player.jumping){
+			}if((key == 'w' || key == ' ') && !player.getCollidingUp() && !player.jumping){
 				up = true;
-				player.collidingDown = false;
-				player.collidingRight = false;
-				player.collidingLeft = false;
+				player.setCollidingDown(false);
+				player.setCollidingRight(false);
+				player.setCollidingLeft(false);
 				player.jumping = true;
 				((DynamicPhysicsData)(player.pd)).vel.y = -5.0f;
 			}

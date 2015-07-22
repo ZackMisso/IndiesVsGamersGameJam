@@ -18,4 +18,7 @@ public class Song implements LineListener{
 		if(event.getType() == LineEvent.Type.STOP)
 			finished = true;
 	}
+	
+	// getter methods
+	public boolean getFinished(){return finished;}
 }

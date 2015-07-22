@@ -55,8 +55,4 @@ public class RunningAnimation extends Animation{
 			}
 		}
 	}
-	
-	//public void draw(Graphics2D g, Vec2 pos){
-	//	
-	//}
 }

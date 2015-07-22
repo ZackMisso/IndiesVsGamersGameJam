@@ -37,4 +37,8 @@ public abstract class Animation {
 		if(visible)
 			g.drawImage(images.get(currentIndex),(int)pos.x,(int)pos.y,null);
 	}
+	
+	// getter methods
+	public Entity getRef(){return ref;}
+	public ArrayList<Image> getImages(){return images;}
 }

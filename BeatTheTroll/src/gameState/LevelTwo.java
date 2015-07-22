@@ -28,40 +28,38 @@ public class LevelTwo extends Level{
 	
 	public LevelTwo(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
-		bg = Color.DARK_GRAY;
-		bg = new Color(.2f,.4f,.8f);
+		setBG(new Color(.2f,.4f,.8f));
 		cloudTimer = 200;
-		bombTimer = 92 - 12 * troll.level;
+		bombTimer = 92 - 12 * getTroll().getLevel();
 		levelTimer = 2000;
 		cole = new CollisionEngine();
 	}
 	
 	public void init(){
-		troll.reset();
-		((TrollAI)troll.ai).setChances(2);
-		player.switchToFalling();
-		aiInput.add((ReactToInputAI)player.ai);
-		player.pd.pos = new Vec2(420,300);
-		gameEntities.add(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
-		gameEntities.add(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
-		gameEntities.add(new InvisEntity(this, new Vec2(80,130),new Vec2(800,40)));
-		gameEntities.add(new InvisEntity(this, new Vec2(80,540),new Vec2(800,40)));
+		getTroll().reset();
+		((TrollAI)getTroll().ai).setChances(2);
+		getPlayer().switchToFalling();
+		addInputAI((ReactToInputAI)getPlayer().ai);
+		getPlayer().pd.pos = new Vec2(420,300);
+		addEntity(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
+		addEntity(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
+		addEntity(new InvisEntity(this, new Vec2(80,130),new Vec2(800,40)));
+		addEntity(new InvisEntity(this, new Vec2(80,540),new Vec2(800,40)));
 		cole = new CollisionEngine();
 	}
 	
 	public void update(){
 		levelTimer--;
-		if(levelTimer <=0){
-			gsm.transition();
-		}
+		if(levelTimer <=0)
+			getGSM().transition();
 		cloudTimer--;
 		if(cloudTimer <= 0){
 			Vec2 p = new Vec2(RNG.getNextFloat() * 600 + 80, 700);
 			Vec2 v = new Vec2(0,-1.5f);
-			CloudAnimation c = new CloudAnimation(gsm);
+			CloudAnimation c = new CloudAnimation(getGSM());
 			LimitAnimation a = new LimitAnimation(c,p, 400, true);
 			a.vel = v;
-			extraAnimations.add(a);
+			addExtraAnimation(a);
 			cloudTimer = 250;
 		}
 		bombTimer--;
@@ -71,24 +69,16 @@ public class LevelTwo extends Level{
 			Bomb b = new Bomb(this,p,v);
 			b.onTimer = true;
 			b.timeToExplode = 240 + (int)(RNG.getNextFloat() * 20);
-			gameEntities.add(b);
-			bombTimer = 55 - 12 * troll.level;
+			addEntity(b);
+			bombTimer = 55 - 12 * getTroll().getLevel();
 		}
-		troll.update();
-		player.update();
-		cole.update(player, troll, gameEntities);
-		for(int i=0;i<gameEntities.size();i++)
-			gameEntities.get(i).update();
-		for(int i=0;i<extraAnimations.size();i++){
-			extraAnimations.get(i).update();
-			if(extraAnimations.get(i).checkRemove())
-				extraAnimations.remove(i--);
-		}
-		for(int i = 0;i<entitiesToRemove.size();i++){
-			gameEntities.remove(entitiesToRemove.get(0));
-			entitiesToRemove.remove(0);
-		}
-		if(restart)
-			gsm.restart();
+		getTroll().update();
+		getPlayer().update();
+		updateCollisionEngine();
+		updateEntities();
+		updateExtraAnimations();
+		updateEntitiesToRemove();
+		if(getRestart())
+			getGSM().restart();
 	}
 }

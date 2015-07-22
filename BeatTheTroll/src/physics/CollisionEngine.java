@@ -52,8 +52,8 @@ public class CollisionEngine {
 	
 	public void resolveManifolds(ArrayList<Manifold> folds){
 		for(int i=0;i<folds.size();i++){
-			Entity one = folds.get(i).one;
-			Entity two = folds.get(i).two;
+			Entity one = folds.get(i).getOne();
+			Entity two = folds.get(i).getTwo();
 			Vec2 n = one.pd.cent().add(two.pd.cent().neg(true), true);
 			float oneExtent = one.pd.siz.x / 2;
 			float twoExtent = two.pd.siz.x / 2;

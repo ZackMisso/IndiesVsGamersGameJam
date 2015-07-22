@@ -19,7 +19,6 @@ public class PlayerTestAI implements ReactToInputAI{
 	}
 	
 	public void update(){}
-	public void reactToMouse(int x, int y){}
 	
 	public void reactToKey(char key, boolean release){
 		if(release){
@@ -37,29 +36,29 @@ public class PlayerTestAI implements ReactToInputAI{
 				//((DynamicPhysicsData)(player.pd)).vel.y = 0;
 			}
 		}else{
-			if(key == 'd' && !player.collidingRight){
+			if(key == 'd' && !player.getCollidingRight()){
 				((DynamicPhysicsData)(player.pd)).acc.x = .2f;
 				//((DynamicPhysicsData)(player.pd)).vel.x = 0f;
 				//System.out.println("WHAT");
 				right = true;
-				player.collidingLeft = false;
-			}if(key == 's' && !player.collidingDown){
+				player.setCollidingLeft(false);
+			}if(key == 's' && !player.getCollidingDown()){
 				up = false;
-				player.collidingUp = false;
-				player.collidingRight = false;
-				player.collidingLeft = false;
+				player.setCollidingUp(false);
+				player.setCollidingRight(false);
+				player.setCollidingLeft(false);
 				//((DynamicPhysicsData)(player.pd)).acc.y = .5f;
 				((DynamicPhysicsData)(player.pd)).vel.y = ((DynamicPhysicsData)(player.pd)).maxVel.y;
-			}if(key == 'a' && !player.collidingLeft){
+			}if(key == 'a' && !player.getCollidingLeft()){
 				right = false;
-				player.collidingRight = false;
+				player.setCollidingRight(false);
 				((DynamicPhysicsData)(player.pd)).acc.x = -.2f;
 				//((DynamicPhysicsData)(player.pd)).vel.x = 0f; // -
-			}if(key == 'w' && !player.collidingUp && !player.jumping){
+			}if(key == 'w' && !player.getCollidingUp() && !player.getJumping()){
 				up = true;
-				player.collidingDown = false;
-				player.collidingRight = false;
-				player.collidingLeft = false;
+				player.setCollidingDown(false);
+				player.setCollidingRight(false);
+				player.setCollidingLeft(false);
 				player.jumping = true;
 				//((DynamicPhysicsData)(player.pd)).acc.y = -.5f;
 				((DynamicPhysicsData)(player.pd)).vel.y = -5.0f; // -

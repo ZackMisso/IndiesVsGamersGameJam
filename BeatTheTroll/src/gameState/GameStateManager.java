@@ -60,18 +60,18 @@ public class GameStateManager {
 	}
 	
 	public void setRefForStuff(){
-		player.ref = currentLevel;
-		troll.ref = currentLevel;
+		player.initForLevel(currentLevel);
+		troll.initForLevel(currentLevel);
 		joystick = new Joystick(currentLevel,new Vec2(70,507),new Vec2());
 		startButton = new UIButton(currentLevel,new Vec2(300,595),new Vec2(),0);
 		selectButton = new UIButton(currentLevel,new Vec2(440,595), new Vec2(),1);
 		aButton = new UIButton(currentLevel,new Vec2(710,575), new Vec2(),2);
 		bButton = new UIButton(currentLevel,new Vec2(635,600), new Vec2(),3);
-		currentLevel.aiInput.add((ReactToInputAI)joystick.ai);
-		currentLevel.aiInput.add((ReactToInputAI)startButton.ai);
-		currentLevel.aiInput.add((ReactToInputAI)selectButton.ai);
-		currentLevel.aiInput.add((ReactToInputAI)aButton.ai);
-		currentLevel.aiInput.add((ReactToInputAI)bButton.ai);
+		currentLevel.addInputAI((ReactToInputAI)joystick.ai);
+		currentLevel.addInputAI((ReactToInputAI)startButton.ai);
+		currentLevel.addInputAI((ReactToInputAI)selectButton.ai);
+		currentLevel.addInputAI((ReactToInputAI)aButton.ai);
+		currentLevel.addInputAI((ReactToInputAI)bButton.ai);
 	}
 	
 	public void update(){
@@ -177,4 +177,7 @@ public class GameStateManager {
 		currentLevel.init();
 		setRefForStuff();
 	}
+	
+	// getter methods
+	public ImageParser getParser(){return parser;}
 }

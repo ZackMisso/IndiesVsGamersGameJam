@@ -13,6 +13,7 @@ import entities.Entity;
 import entities.Player;
 import entities.Troll;
 import math.Vec2;
+import physics.CollisionEngine;
 
 public abstract class Level {
 	private GameStateManager gsm;
@@ -23,6 +24,7 @@ public abstract class Level {
 	private ArrayList<ReactToInputAI> aiInput;
 	private ArrayList<LimitAnimation> extraAnimations;
 	private ArrayList<Entity> entitiesToRemove;
+	private CollisionEngine cole;
 	private Troll troll;
 	private Player player;
 	private Vec2 offset;
@@ -32,10 +34,10 @@ public abstract class Level {
 		gsm = g;
 		player = p;
 		if(p!=null)
-			player.ref = this;
+			player.initForLevel(this);
 		troll = t;
 		if(t != null)
-			troll.ref = this;
+			troll.initForLevel(this);
 		bg = null;
 		offset = new Vec2();
 		gameEntities = new ArrayList<>();
@@ -44,7 +46,48 @@ public abstract class Level {
 		aiInput = new ArrayList<>();
 		extraAnimations = new ArrayList<>();
 		entitiesToRemove = new ArrayList<>();
+		cole = new CollisionEngine();
 		restart = false;
+	}
+	
+	public void updateCollisionEngine(){
+		cole.update(player, troll, gameEntities);
+	}
+	
+	public void updateEntities(){
+		for(int i=0;i<gameEntities.size();i++)
+			gameEntities.get(i).update();
+	}
+	
+	public void updateExtraAnimations(){
+		for(int i=0;i<extraAnimations.size();i++){
+			extraAnimations.get(i).update();
+			if(extraAnimations.get(i).checkRemove())
+				extraAnimations.remove(i--);
+		}
+	}
+	
+	public void updateEntitiesToRemove(){
+		for(int i = 0;i<entitiesToRemove.size();i++){
+			gameEntities.remove(entitiesToRemove.get(0));
+			entitiesToRemove.remove(0);
+		}
+	}
+	
+	public void addEntity(Entity en){
+		gameEntities.add(en);
+	}
+	
+	public void addExtraAnimation(LimitAnimation param){
+		extraAnimations.add(param);
+	}
+	
+	public void addEntityToRemove(Entity en){
+		entitiesToRemove.add(en);
+	}
+	
+	public void addInputAI(ReactToInputAI ai){
+		aiInput.add(ai);
 	}
 	
 	public abstract void init();
@@ -75,4 +118,14 @@ public abstract class Level {
 		for(int i=0;i<aiInput.size();i++)
 			aiInput.get(i).reactToKey(key, release);
 	}
+	
+	// getter methods
+	public GameStateManager getGSM(){return gsm;}
+	public Player getPlayer(){return player;}
+	public Troll getTroll(){return troll;}
+	public Color getBG(){return bg;}
+	public boolean getRestart(){return restart;}
+	
+	// setter methods
+	public void setBG(Color param){bg=param;}
 }

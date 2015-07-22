@@ -19,14 +19,14 @@ public class JoystickAI implements ReactToInputAI{
 	public void reactToKey(char key, boolean release){
 		if(key == 'a' || key == 'd'){
 			if(release){
-				JoystickAnimation an = (JoystickAnimation)stick.anim;
+				JoystickAnimation an = (JoystickAnimation)stick.getAnim();
 				an.center();
 			}
 			else if(key == 'd'){
-				JoystickAnimation an = (JoystickAnimation)stick.anim;
+				JoystickAnimation an = (JoystickAnimation)stick.getAnim();
 				an.right();
 			}else{
-				JoystickAnimation an = (JoystickAnimation)stick.anim;
+				JoystickAnimation an = (JoystickAnimation)stick.getAnim();
 				an.left();
 			}
 		}

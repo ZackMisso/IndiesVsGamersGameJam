@@ -84,4 +84,7 @@ public class Troll extends Entity{
 	}
 	
 	public void resetToDefaultAnimation(){}
+	
+	// getter methods
+	public int getLevel(){return level;}
 }

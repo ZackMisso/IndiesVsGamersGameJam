@@ -23,24 +23,22 @@ import misc.RNG;
 import physics.CollisionEngine;
 
 public class LevelOne extends Level{
-	private CollisionEngine cole;
 	private int hammerTimer;
 	
 	public LevelOne(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
-		bg = Color.DARK_GRAY;
-		hammerTimer = 50 - 10 * troll.level;
-		cole = new CollisionEngine();
+		setBG(Color.DARK_GRAY);
+		hammerTimer = 50 - 10 * getTroll().getLevel();
 	}
 	
 	public void init(){
-		troll.reset();
-		((TrollAI)troll.ai).setChances(1);
-		player.pd.pos = new Vec2(300,400);
-		player.switchToStanding();
+		getTroll().reset();
+		((TrollAI)getTroll().ai).setChances(1);
+		getPlayer().pd.pos = new Vec2(300,400);
+		getPlayer().switchToStanding();
 		for(int i=0;i<15;i++){
 			Block block = new Block(this,new Vec2(200 + 32 * i,500),2);
-			gameEntities.add(block);
+			addEntity(block);
 		}
 		aiInput.add((ReactToInputAI)player.ai);
 		gameEntities.add(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
@@ -54,24 +52,24 @@ public class LevelOne extends Level{
 		hammerTimer--;
 		GlobalController.timeTillAttack--;
 		if(GlobalController.timeTillAttack <= 0){
-			if(troll.level == 1){
+			if(getTroll().getLevel() == 1){
 				GlobalController.initToTwo();
 				GlobalController.level = 2;
-				troll.changeToTwo();
-				gameEntities.add(new Hole(this,new Vec2(80,480),false));
+				getTroll().changeToTwo();
+				addEntity(new Hole(this,new Vec2(80,480),false));
 			}
-			else if(troll.level == 2){
+			else if(getTroll().getLevel() == 2){
 				GlobalController.initToThree();
-				troll.changeToThree();
+				getTroll().changeToThree();
 				GlobalController.level = 3;
-				gameEntities.add(new Hole(this,new Vec2(80,480),false));
+				addEntity(new Hole(this,new Vec2(80,480),false));
 				
-			}else if(troll.level == 3){
+			}else if(getTroll().getLevel() == 3){
 				GlobalController.initToFour();
-				troll.changeToFour();
+				getTroll().changeToFour();
 				GlobalController.level = 4;
-				gameEntities.add(new Hole(this,new Vec2(80,700),false));
-			}else if(troll.level == 4){
+				addEntity(new Hole(this,new Vec2(80,700),false));
+			}else if(getTroll().getLevel() == 4){
 				GlobalController.level = 4;
 				GlobalController.gameOver = true;
 				GlobalController.addHighScore();
@@ -79,27 +77,19 @@ public class LevelOne extends Level{
 		}
 		if(hammerTimer <= 0){
 			Vec2 p = new Vec2(RNG.getNextFloat() * 680 + 80,90);
-			gameEntities.add(new Hammer(this,p));
-			hammerTimer = 50 - 10 * troll.level;
+			addEntity(new Hammer(this,p));
+			hammerTimer = 50 - 10 * getTroll().getLevel();
 		}
-		troll.update();
-		player.update();
-		if(player.outOfBounds())
-			gsm.transition();
-		cole.update(player, troll, gameEntities);
-		for(int i=0;i<gameEntities.size();i++)
-			gameEntities.get(i).update();
-		for(int i=0;i<extraAnimations.size();i++){
-			extraAnimations.get(i).update();
-			if(extraAnimations.get(i).checkRemove())
-				extraAnimations.remove(i--);
-		}
-		for(int i = 0;i<entitiesToRemove.size();i++){
-			gameEntities.remove(entitiesToRemove.get(0));
-			entitiesToRemove.remove(0);
-		}
-		if(restart)
-			gsm.restart();
+		getTroll().update();
+		getPlayer().update();
+		if(getPlayer().outOfBounds())
+			getGSM().transition();
+		updateCollisionEngine();
+		updateEntities();
+		updateExtraAnimations();
+		updateEntitiesToRemove();
+		if(getRestart())
+			getGSM().restart();
 	}
 	
 	public void draw(Graphics2D g){

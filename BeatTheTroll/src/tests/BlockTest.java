@@ -25,7 +25,6 @@ public class BlockTest extends Entity implements Collidable{
 		anim = new TestAnimation(this, Color.RED);
 		ai = null;
 		pd = new SimplePhysicsData(new Vec2(300,500),new Vec2(32,32));
-		//pd.cb = null;
 	}
 	
 	//public void update(){

@@ -37,29 +37,29 @@ public class PlayerFallingTestAI implements ReactToInputAI{
 				((DynamicPhysicsData)(player.pd)).vel.y = 0;
 			}
 		}else{
-			if(key == 'd' && !player.collidingRight){
+			if(key == 'd' && !player.getCollidingRight()){
 				//((DynamicPhysicsData)(player.pd)).acc.x = .5f;
 				((DynamicPhysicsData)(player.pd)).vel.x = 1.8f;
 				//System.out.println("WHAT");
 				right = true;
-				player.collidingLeft = false;
-			}if(key == 's' && !player.collidingDown){
+				player.setCollidingLeft(false);
+			}if(key == 's' && !player.getCollidingDown()){
 				up = false;
-				player.collidingUp = false;
-				player.collidingRight = false;
-				player.collidingLeft = false;
+				player.setCollidingUp(false);
+				player.setCollidingRight(false);
+				player.setCollidingLeft(false);
 				//((DynamicPhysicsData)(player.pd)).acc.y = .5f;
 				((DynamicPhysicsData)(player.pd)).vel.y = 3.2f;
-			}if(key == 'a' && !player.collidingLeft){
+			}if(key == 'a' && !player.getCollidingLeft()){
 				right = false;
-				player.collidingRight = false;
+				player.setCollidingRight(false);
 				//((DynamicPhysicsData)(player.pd)).acc.x = -.5f;
 				((DynamicPhysicsData)(player.pd)).vel.x = -1.8f; // -
-			}if(key == 'w' || key == ' ' && !player.collidingUp){
+			}if(key == 'w' || key == ' ' && !player.getCollidingUp()){
 				up = true;
-				player.collidingDown = false;
-				player.collidingRight = false;
-				player.collidingLeft = false;
+				player.setCollidingDown(false);
+				player.setCollidingRight(false);
+				player.setCollidingLeft(false);
 				//player.jumping = true;
 				//((DynamicPhysicsData)(player.pd)).acc.y = -.5f;
 				((DynamicPhysicsData)(player.pd)).vel.y = -1.0f; // -

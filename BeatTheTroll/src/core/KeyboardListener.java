@@ -15,11 +15,11 @@ public class KeyboardListener implements KeyListener {
 	}
 	
 	public void keyPressed(KeyEvent event){
-		thread.gsm.handleKey(event.getKeyChar(), false);
+		thread.getGSM().handleKey(event.getKeyChar(), false);
 	}
 	
 	public void keyReleased(KeyEvent event){
-		thread.gsm.handleKey(event.getKeyChar(), true);
+		thread.getGSM().handleKey(event.getKeyChar(), true);
 	}
 	
 	public void keyTyped(KeyEvent event){}

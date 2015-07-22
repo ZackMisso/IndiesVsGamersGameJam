@@ -49,4 +49,7 @@ public class LimitAnimation{
 		else
 			anim.draw(g, pos);
 	}
+	
+	// setter methods
+	public void setVel(Vec2 param){vel=param;}
 }

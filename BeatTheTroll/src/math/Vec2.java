@@ -5,6 +5,10 @@
 package math;
 
 public class Vec2 {
+	// Since Vec2 is such an often used data structure and contains no critical data,
+	// I am leaving the instance variables as public. This is to avoid the overhead
+	// caused by the method calls to the accessors and modifiers if they were implemented
+	// instead
 	public float x;
 	public float y;
 	
@@ -70,7 +74,7 @@ public class Vec2 {
 		return x*vec.x + y*vec.y;
 	}
 	
-	public String toString(){
+	public String toString(){ // used for debugging
 		return "X :: "+x+" Y :: "+y;
 	}
 }

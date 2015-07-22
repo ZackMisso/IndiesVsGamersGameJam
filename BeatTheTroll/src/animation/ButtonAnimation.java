@@ -9,7 +9,7 @@ import entities.Entity;
 public class ButtonAnimation extends Animation {	
 	public ButtonAnimation(Entity en){
 		super(en);
-		images = en.ref.gsm.parser.getImages("Button",2);
+		images = en.getParser().getImages("Button",2);
 	}
 	
 	public void update(){}

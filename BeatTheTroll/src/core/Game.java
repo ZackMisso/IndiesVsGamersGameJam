@@ -6,13 +6,11 @@ package core;
 
 import javax.swing.JFrame;
 
-import misc.GlobalController;
-
 public class Game {
 	public final JFrame window;
 	public final GameThread thread;
 	public final KeyboardListener key;
-	public final MousepadListener mouse;
+	//public final MousepadListener mouse; // never used
 	
 	public Game(int x, int y, String title){
 		window = new JFrame();
@@ -24,11 +22,10 @@ public class Game {
 		window.setVisible(true);
 		thread = new GameThread(this);
 		key = new KeyboardListener(thread);
-		mouse = new MousepadListener(thread);
+		//mouse = new MousepadListener(thread);
 		window.add(thread);
 		window.addKeyListener(key);
-		window.addMouseListener(mouse);
-		//GlobalController.logIntoGameJolt("89300c", "Firal");
+		//window.addMouseListener(mouse);
 		new Thread(thread).start();
 	}
 }

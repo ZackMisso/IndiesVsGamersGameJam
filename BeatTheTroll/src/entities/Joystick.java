@@ -13,11 +13,7 @@ import physics.SimplePhysicsData;
 
 public class Joystick extends Entity{
 	public Joystick(Level lev,Vec2 pos, Vec2 siz){
-		super(null);
-		ref = lev;
-		anim = new JoystickAnimation(this);
-		pd = new SimplePhysicsData(pos, siz);
-		ai = new JoystickAI(this);
+		super(lev,new JoystickAnimation(this),new SimplePhysicsData(pos,siz),new JoystickAI(this));
 	}
 	
 	public void handleManifold(Manifold fold){}

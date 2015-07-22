@@ -22,10 +22,6 @@ public abstract class Entity {
 	private int damage;
 	private boolean harmfulToP;
 	private boolean alive;
-	private boolean collidingRight;
-	private boolean collidingLeft;
-	private boolean collidingUp;
-	private boolean collidingDown;
 	private boolean jumping;
 	private boolean onGround;
 	private boolean jumpInAir;
@@ -108,6 +104,29 @@ public abstract class Entity {
 			anim.draw(g, pd.pos);
 	}
 	
+	public void updateAnimation(){
+		anim.update();
+	}
+	
+	public void setDead(){
+		alive = false;
+	}
+	
+	public void initForLevel(Level level){
+		ref = level;
+	}
+	
+	public ImageParser getParser(){
+		return ref.getGSM().getParser();
+	}
+	
 	public abstract void handleManifold(Manifold fold);
 	public abstract void resetToDefaultAnimation();
+	
+	// getter methods
+	public Level getRef(){return ref;}
+	public Animation getAnim() {return anim;}
+	
+	// setter methods
+	public void setHarmfulToP(boolean param){harmfulToP = param;}
 }

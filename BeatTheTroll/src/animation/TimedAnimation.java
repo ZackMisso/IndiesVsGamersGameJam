@@ -16,8 +16,7 @@ public class TimedAnimation extends Animation{
 	
 	public void update(){
 		timer--;
-		if(timer<=0){
-			visible = false;
-		}
+		if(timer<=0)
+			makeInvisible();
 	}
 }

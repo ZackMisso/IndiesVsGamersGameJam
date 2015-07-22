@@ -20,6 +20,10 @@ public class Player extends Entity{
 	private int invulnerableTimer;
 	private boolean invulnerable;
 	private boolean flip;
+	private boolean collidingRight;
+	private boolean collidingLeft;
+	private boolean collidingUp;
+	private boolean collidingDown;
 	
 	public Player(GameStateManager ref){
 		super(null);
@@ -61,7 +65,7 @@ public class Player extends Entity{
 	
 	public void handleManifold(Manifold fold){
 		if(fold.two instanceof Collidable){
-			if(fold.norm.x != 0){
+			if(fold.getNorm().getX() != 0){
 				fold.pen.x *= fold.norm.x;
 				fold.pen.x += fold.norm.x;
 				if(fold.norm.x > 0)
@@ -88,4 +92,22 @@ public class Player extends Entity{
 	public void resetToDefaultAnimation(){
 		anim = new TestAnimation(this, Color.BLUE);
 	}
+	
+	public void nowInvulnerable(int time){
+		invulnerable = true;
+		invulnerableTimer = time;
+	}
+	
+	// getter methods
+	public boolean getInvulnerable() {return invulnerable;}
+	public boolean getCollidingRight(){return collidingRight;}
+	public boolean getCollidingLeft(){return collidingLeft;}
+	public boolean getCollidingUp(){return collidingUp;}
+	public boolean getCollidingDown(){return collidingDown;}
+	
+	// setter methods
+	public void setCollidingRight(boolean param){collidingRight = param;}
+	public void setCollidingLeft(boolean param){collidingLeft = param;}
+	public void setCollidingUp(boolean param){collidingUp=param;}
+	public void setCollidingDown(boolean param){collidingDown=param;}
 }
