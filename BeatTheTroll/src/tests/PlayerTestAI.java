@@ -8,9 +8,9 @@ import ai.ReactToInputAI;
 import physics.DynamicPhysicsData;
 
 public class PlayerTestAI implements ReactToInputAI{
-public PlayerTest player;
-boolean right;
-boolean up;
+	private PlayerTest player;
+	private boolean right;
+	private boolean up;
 	
 	public PlayerTestAI(PlayerTest p){
 		player = p;
@@ -18,13 +18,8 @@ boolean up;
 		right = false;
 	}
 	
-	public void update(){
-		
-	}
-	
-	public void reactToMouse(int x, int y){
-		
-	}
+	public void update(){}
+	public void reactToMouse(int x, int y){}
 	
 	public void reactToKey(char key, boolean release){
 		if(release){

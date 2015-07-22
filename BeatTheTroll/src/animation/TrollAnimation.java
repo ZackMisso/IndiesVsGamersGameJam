@@ -8,8 +8,8 @@ import entities.Entity;
 import entities.Troll;
 
 public class TrollAnimation extends Animation{
-	public Troll troll;
-	public int face;
+	private Troll troll;
+	private int face;
 	
 	public TrollAnimation(Entity en){
 		super(en);

@@ -15,18 +15,18 @@ import entities.Troll;
 import math.Vec2;
 
 public abstract class Level {
-	public GameStateManager gsm;
-	public Color bg;
-	public ArrayList<Entity> gameEntities;
-	public ArrayList<Entity> playerObj;
-	public ArrayList<Entity> enemyObj;
-	public ArrayList<ReactToInputAI> aiInput;
-	public ArrayList<LimitAnimation> extraAnimations;
-	public ArrayList<Entity> entitiesToRemove;
-	public Troll troll;
-	public Player player;
-	public Vec2 offset;
-	public boolean restart;
+	private GameStateManager gsm;
+	private Color bg;
+	private ArrayList<Entity> gameEntities;
+	private ArrayList<Entity> playerObj;
+	private ArrayList<Entity> enemyObj;
+	private ArrayList<ReactToInputAI> aiInput;
+	private ArrayList<LimitAnimation> extraAnimations;
+	private ArrayList<Entity> entitiesToRemove;
+	private Troll troll;
+	private Player player;
+	private Vec2 offset;
+	private boolean restart;
 	
 	public Level(GameStateManager g,Player p, Troll t){
 		gsm = g;

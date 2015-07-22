@@ -7,10 +7,10 @@ package physics;
 import math.Vec2;
 
 public class DynamicPhysicsData extends PhysicsData{
-	public Vec2 vel;
-	public Vec2 maxVel;
-	public Vec2 acc;
-	public CollisionBox cb;
+	private Vec2 vel;
+	private Vec2 maxVel;
+	private Vec2 acc;
+	private CollisionBox cb;
 	
 	public DynamicPhysicsData(Vec2 pos, Vec2 siz){
 		super(pos, siz);

@@ -32,9 +32,7 @@ public class BlockTest extends Entity implements Collidable{
 	//	
 	//}
 	
-	public void handleManifold(Manifold fold){
-		
-	}
+	public void handleManifold(Manifold fold){}
 	
 	public void resetToDefaultAnimation(){
 		anim = new TestAnimation(this, Color.RED);

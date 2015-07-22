@@ -9,15 +9,15 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class SoundEngine {
-	public int timer;
-	public int timeForIntro;
-	public int timeForMain;
-	public int timeForEpic;
-	public boolean intro;
-	public boolean main;
-	public boolean epic;
-	public boolean notSupported;
-	public Song currentSong;
+	private int timer;
+	private int timeForIntro;
+	private int timeForMain;
+	private int timeForEpic;
+	private boolean intro;
+	private boolean main;
+	private boolean epic;
+	private boolean notSupported;
+	private Song currentSong;
 	
 	public SoundEngine(){
 		timeForIntro = 27 + 60 * 28; // 28.44

@@ -11,7 +11,5 @@ public class ItemAnimation extends Animation{
 		super(en);
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 }

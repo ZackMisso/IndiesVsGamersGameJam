@@ -13,7 +13,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 
 public class ImageParser {
-	public Map<String,Image> cache;
+	private Map<String,Image> cache;
 	
 	public ImageParser(){
 		cache = new HashMap<String,Image>();
@@ -23,7 +23,7 @@ public class ImageParser {
 		if(cache.containsKey(loc))
 			return cache.get(loc);
 		else{
-			Image img; //= // to be implemented
+			Image img;
 			try{
 				img = ImageIO.read(getClass().getResourceAsStream(loc+".png"));
 				if(img == null){
@@ -34,11 +34,8 @@ public class ImageParser {
 				return null;
 			}
 			cache.put(loc, img);
-			
-			//adsfasdfksadlhf // put to cause an error
 			return img;
 		}
-		//return null;
 	}
 	
 	public ArrayList<Image> getImages(String loc,int count){
@@ -55,13 +52,7 @@ public class ImageParser {
 					imgs.add(img);
 				}catch(IOException e){
 					System.out.println("Image Parser Error");
-					//return null;
 				}
-				//Image img; //= // to be implemented
-				///imgs.add(img);
-				//System.out.println("Image Parser Error");
-				//adsfadsklfhkdsajh
-				//cache.put(loc, img);
 			}
 		}
 		return imgs;

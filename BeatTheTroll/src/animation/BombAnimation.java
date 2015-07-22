@@ -12,7 +12,5 @@ public class BombAnimation extends Animation{
 		images.add(en.ref.gsm.parser.getImage("Bomb"));
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 }

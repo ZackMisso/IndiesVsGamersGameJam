@@ -15,8 +15,7 @@ public class JoystickAnimation extends Animation{
 		images = en.ref.gsm.parser.getImages("Joystick",3);
 	}
 	
-	public void update(){
-	}
+	public void update(){}
 	
 	public void center(){
 		currentIndex = 0;

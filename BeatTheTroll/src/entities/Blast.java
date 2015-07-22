@@ -15,7 +15,7 @@ import physics.Manifold;
 import tests.PlayerTest;
 
 public class Blast extends Entity{
-	public boolean reverse;
+	private boolean reverse;
 	
 	public Blast(Level ref, Vec2 pos,boolean rev){
 		super(ref);

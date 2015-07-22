@@ -25,7 +25,6 @@ public class LevelThree extends Level{
 	
 	public LevelThree(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
-		//bg = Color.cyan;
 		bg = new Color(.2f,.3f,.5f);
 		transitionTimer = 30*60 * t.level; // one/two/three/four minute
 		holeOpen = false;
@@ -33,14 +32,6 @@ public class LevelThree extends Level{
 	}
 	
 	public void init(){
-		//PlayerTest play = new PlayerTest();
-		//gameEntities.add(play);
-		//for(int i=0;i<15;i++){
-		//	Block block = new Block(this,new Vec2(200 + 32 * i,500),2);
-		//	gameEntities.add(block);
-		//}
-		//aiInput.add((ReactToInputAI)play.ai);
-		//gameEntities.add(new Hammer(this,new Vec2(400,400),false));
 		troll.reset();
 		((TrollAI)troll.ai).setChances(3);
 		player.pd.pos = new Vec2(300,400);
@@ -58,12 +49,8 @@ public class LevelThree extends Level{
 	public void update(){
 		if(!holeOpen)
 			troll.update();
-		//troll.update();
 		player.update();
 		cole.update(player, troll, gameEntities);
-		//if(holeOpen){
-		//	
-		//}else{
 			transitionTimer--;
 			for(int i=0;i<gameEntities.size();i++)
 				gameEntities.get(i).update();
@@ -73,17 +60,13 @@ public class LevelThree extends Level{
 					extraAnimations.remove(i--);
 			}
 			for(int i = 0;i<entitiesToRemove.size();i++){
-				//System.out.println("REMOVING ENTITY");
 				gameEntities.remove(entitiesToRemove.get(0));
 				entitiesToRemove.remove(0);
 			}
 			if(transitionTimer == 0){
 				gameEntities.add(new Hole(this,new Vec2(81,121),true));
-				//System.out.println("HOLE");
 				holeOpen = true;
 			}
-			//cole.update(gameEntities.get(0), null, gameEntities);
-		//}
 			if(restart)
 				gsm.restart();
 	}

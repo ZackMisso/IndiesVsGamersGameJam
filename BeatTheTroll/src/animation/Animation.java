@@ -12,10 +12,10 @@ import entities.Entity;
 import math.Vec2;
 
 public abstract class Animation {
-	public Entity ref;
-	public ArrayList<Image> images;
-	public int currentIndex;
-	public boolean visible;
+	private Entity ref;
+	private ArrayList<Image> images;
+	private int currentIndex;
+	private boolean visible;
 	
 	public Animation(Entity en){
 		ref = en;

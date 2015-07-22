@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import entities.Entity;
 
 public class RunningAnimation extends Animation{
-	public int time;
-	public int currentTime;
-	public boolean stop;
-	public boolean reverse;
+	private int time;
+	private int currentTime;
+	private boolean stop;
+	private boolean reverse;
 	
 	public RunningAnimation(Entity en){
 		super(en);

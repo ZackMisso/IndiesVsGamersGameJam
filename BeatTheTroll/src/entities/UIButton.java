@@ -12,7 +12,7 @@ import physics.Manifold;
 import physics.SimplePhysicsData;
 
 public class UIButton extends Entity{
-	public int index;
+	private int index;
 	
 	public UIButton(Level lev,Vec2 pos, Vec2 siz, int in){
 		super(null);

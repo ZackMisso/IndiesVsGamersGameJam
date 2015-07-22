@@ -21,10 +21,10 @@ import misc.RNG;
 import physics.CollisionEngine;
 
 public class LevelTwo extends Level{
-	CollisionEngine cole;
-	public int cloudTimer;
-	public int bombTimer;
-	public int levelTimer;
+	private CollisionEngine cole;
+	private int cloudTimer;
+	private int bombTimer;
+	private int levelTimer;
 	
 	public LevelTwo(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
@@ -37,23 +37,15 @@ public class LevelTwo extends Level{
 	}
 	
 	public void init(){
-		//PlayerTest play = new PlayerTest();
-		//gameEntities.add(play);
-		//for(int i=0;i<15;i++){
-		//	Block block = new Block(this,new Vec2(200 + 32 * i,500),2);
-		//	gameEntities.add(block);
-		//}
 		troll.reset();
 		((TrollAI)troll.ai).setChances(2);
 		player.switchToFalling();
 		aiInput.add((ReactToInputAI)player.ai);
 		player.pd.pos = new Vec2(420,300);
-		//player.switchToFalling();
 		gameEntities.add(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
 		gameEntities.add(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
 		gameEntities.add(new InvisEntity(this, new Vec2(80,130),new Vec2(800,40)));
 		gameEntities.add(new InvisEntity(this, new Vec2(80,540),new Vec2(800,40)));
-		//gameEntities.add(new Hammer(this,new Vec2(400,400),false));
 		cole = new CollisionEngine();
 	}
 	
@@ -80,7 +72,7 @@ public class LevelTwo extends Level{
 			b.onTimer = true;
 			b.timeToExplode = 240 + (int)(RNG.getNextFloat() * 20);
 			gameEntities.add(b);
-			bombTimer = 55 - 12 * troll.level;//troll.level;
+			bombTimer = 55 - 12 * troll.level;
 		}
 		troll.update();
 		player.update();
@@ -93,11 +85,9 @@ public class LevelTwo extends Level{
 				extraAnimations.remove(i--);
 		}
 		for(int i = 0;i<entitiesToRemove.size();i++){
-			//System.out.println("REMOVING ENTITY");
 			gameEntities.remove(entitiesToRemove.get(0));
 			entitiesToRemove.remove(0);
 		}
-		//cole.update(gameEntities.get(0), null, gameEntities);
 		if(restart)
 			gsm.restart();
 	}

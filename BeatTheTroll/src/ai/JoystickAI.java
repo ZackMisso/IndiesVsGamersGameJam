@@ -8,7 +8,7 @@ import animation.JoystickAnimation;
 import entities.Joystick;
 
 public class JoystickAI implements ReactToInputAI{
-	public Joystick stick;
+	private Joystick stick;
 	
 	public JoystickAI(Joystick param){
 		stick = param;

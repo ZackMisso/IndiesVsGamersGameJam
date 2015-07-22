@@ -10,8 +10,8 @@ import gameState.Level;
 import math.Vec2;
 
 public class ExplosionAnimation extends Animation{
-	public Level lev;
-	public Vec2 pos;
+	private Level lev;
+	private Vec2 pos;
 	
 	public ExplosionAnimation(Level param, Vec2 param2){
 		super(null);

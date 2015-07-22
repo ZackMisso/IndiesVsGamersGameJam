@@ -17,9 +17,7 @@ public class BasicAnimation extends Animation{
 		images = ims;
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 	
 	//public void draw(Graphics2D g, Vec2 pos){
 	//	g.drawImage(images.get(0), (int)pos.x,(int)pos.y,null);

@@ -18,7 +18,7 @@ public class InvisEntity extends Entity implements Collidable{
 		pd = new SimplePhysicsData(pos,siz);
 	}
 	
-	public void update(){	}
+	public void update(){}
 	public void draw(Graphics2D g){}
 	public void handleManifold(Manifold fold){}
 	public void resetToDefaultAnimation(){}

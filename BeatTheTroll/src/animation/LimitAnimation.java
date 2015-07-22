@@ -9,13 +9,13 @@ import java.awt.Graphics2D;
 import math.Vec2;
 
 public class LimitAnimation{
-	public Animation anim;
-	public Animation def;
-	public Vec2 pos;
-	public Vec2 vel;
-	public int timer;
-	public boolean removeOnTimer;
-	public boolean onDefault;
+	private Animation anim;
+	private Animation def;
+	private Vec2 pos;
+	private Vec2 vel;
+	private int timer;
+	private boolean removeOnTimer;
+	private boolean onDefault;
 	
 	public LimitAnimation(Animation param, Vec2 vec, int param2, boolean param3){
 		anim = param;

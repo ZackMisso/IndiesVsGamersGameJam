@@ -16,8 +16,8 @@ import physics.Manifold;
 import tests.PlayerTest;
 
 public class Bomb extends Entity{
-	public int timeToExplode;
-	public boolean onTimer;
+	private int timeToExplode;
+	private boolean onTimer;
 	
 	public Bomb(Level ref,Vec2 pos,Vec2 v){
 		super(ref);

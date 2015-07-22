@@ -34,8 +34,6 @@ public class Vec2 {
 	public float exDist(Vec2 one){
 		float a = one.x - x;
 		float b = one.y - y;
-		//System.out.println("A :: "+a+" X :: "+x);
-		//System.out.println("B :: "+b+" Y :: "+y);
 		return a*a + b*b;
 	}
 	
@@ -50,14 +48,11 @@ public class Vec2 {
 		if(temp == 0)
 			return new Vec2();
 		return new Vec2(x/temp,y/temp);
-		//x = x / temp;
-		//y = y / temp;
 	}
 	
 	public void norm(boolean hack){
 		float temp = x*x + y*y;
 		temp = (float)Math.sqrt((double)temp);
-		//return new Vec2(x/temp,y/temp);
 		if(temp == 0){
 			x = 0;
 			y = 0;

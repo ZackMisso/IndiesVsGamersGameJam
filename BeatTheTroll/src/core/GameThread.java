@@ -14,35 +14,24 @@ import gameState.GameStateManager;
 import misc.RNG;
 
 public class GameThread extends JPanel implements Runnable {
-	public Game game;
-	public GameStateManager gsm;
-	//public InitLevel lev;
-	public static boolean running;
-	//public boolean gameSet;
+	private Game game;
+	private GameStateManager gsm;
+	private static boolean running;
 	
 	public GameThread(Game param){
 		game = param;
 		RNG.init();
 		gsm = new GameStateManager(game);
-		//lev = new InitLevel();
-		//RNG.init();
 		running = true;
-		//gameSet = false;
 	}
 	
 	public void update(){
-		//if(!gameSet){
-		//	
-		//}else
 		gsm.update();
 	}
 	
 	public void paint(Graphics g){
 		BufferedImage backBuffer = new BufferedImage(880, 800, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = (Graphics2D)backBuffer.getGraphics();
-		//if(!gameSet){
-		//	
-		//}else
 			gsm.draw(g2);
 		g.drawImage(backBuffer, 0, 0, game.window);
 	}
@@ -52,7 +41,6 @@ public class GameThread extends JPanel implements Runnable {
 	}
 	
 	public void run(){
-		//init();
 		long lastTime = System.nanoTime();
 		double nsPerTick = 1000000000D / 60D;
 		int ticks = 0;
@@ -76,7 +64,6 @@ public class GameThread extends JPanel implements Runnable {
 			}
 			if(System.currentTimeMillis() - lastTimer >= 1000){
 				lastTimer += 1000;
-				//System.out.println("FPS :: "+ticks+" Frames :: "+frames);
 				if(ticks >= 55 && frames >= 50){
 					RNG.extraTime();
 					RNG.extraTime();

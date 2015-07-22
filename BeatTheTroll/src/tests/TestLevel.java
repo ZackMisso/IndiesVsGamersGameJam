@@ -20,10 +20,10 @@ import math.Vec2;
 import physics.CollisionEngine;
 
 public class TestLevel extends Level{
-	CollisionEngine cole;
-	int timer;
-	int timer2;
-	int timer3;
+	private CollisionEngine cole;
+	private int timer;
+	private int timer2;
+	private int timer3;
 	
 	public TestLevel(GameStateManager g,Player p, Troll t){
 		super(g,p,t);

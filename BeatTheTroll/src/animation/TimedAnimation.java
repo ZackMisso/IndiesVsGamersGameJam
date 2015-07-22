@@ -7,7 +7,7 @@ package animation;
 import entities.Entity;
 
 public class TimedAnimation extends Animation{
-	public int timer;
+	private int timer;
 	
 	public TimedAnimation(Entity en, int t){
 		super(en);

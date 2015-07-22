@@ -13,15 +13,15 @@ import entities.Troll;
 import misc.GlobalController;
 
 public class InitLevel extends Level{
-	public String acept;
-	public String userName;
-	public String privateKey;
-	public ArrayList<String> messages;
-	public boolean accepting;
-	public boolean addingName;
-	public boolean addingKey;
-	public boolean closing;
-	public int timer;
+	private String acept;
+	private String userName;
+	private String privateKey;
+	private ArrayList<String> messages;
+	private boolean accepting;
+	private boolean addingName;
+	private boolean addingKey;
+	private boolean closing;
+	private int timer;
 	
 	public InitLevel(GameStateManager gsm,Player p, Troll t){
 		super(gsm,p,t);
@@ -49,9 +49,7 @@ public class InitLevel extends Level{
 		}
 	}
 	
-	public void logInToGameJolt(){
-		// to be implemented
-	}
+	public void logInToGameJolt(){}
 	
 	public void draw(Graphics2D g){
 		if(bg != null){
@@ -63,9 +61,7 @@ public class InitLevel extends Level{
 		for(;i<messages.size();i++){
 			g.drawString(messages.get(i), 82, 171 + 20*i);
 		}
-		if(closing){
-			
-		}
+		if(closing){}
 		else if(addingKey){
 			g.drawString(privateKey, 82, 171 + 20*i);
 		}else if(addingName){
@@ -75,68 +71,31 @@ public class InitLevel extends Level{
 		}
 	}
 	
-	public void handleClick(int x, int y){
-		//for(int i=0;i<aiInput.size();i++)
-		//	aiInput.get(i).reactToMouse(x, y);
-	}
+	public void handleClick(int x, int y){}
 	
 	public void handleKey(char key, boolean release){
-		//System.out.println((int)key);
 		if(!release){
-			if(closing){
-			
-			}
-			//if(accepting){
-			//	if(key == '\n'){
-			//		if(acept.equals("y")){
-			//			addingName = true;
-			//			messages.add(acept);
-			//			messages.add("Enter in your user name");
-			//		}
-			//		else{
-			//			closing = true;
-			//			messages.add(acept);
-		//			}
-			//	}
-			//	else if((int)key == 8 && acept.length() != 0){
-		//			acept = acept.substring(0, acept.length()-1);
-			//	}else{
-			//		acept = acept+key;
-		//		}
-		else if(addingKey){
-			if(key == '\n'){
-				//if(acept.equals("y")){
-				//	addingName = true;
-				messages.add(privateKey);
-				messages.add("Logging into GameJolt");
-				//}
-				//else{
-				GlobalController.userName = userName;
-				GlobalController.privateKey = privateKey;
-				ArrayList<String> list = GlobalController.logIntoGameJolt();
-				for(int i=0;i<list.size();i++)
-					messages.add(list.get(i));
-				closing = true;
-				//	messages.add(acept);
-				//}
-			}
-			else if((int)key == 8 && privateKey.length() != 0){
-				privateKey = privateKey.substring(0, privateKey.length()-1);
-			}else{
-				//if(Character.isLetterOrDigit(codePoint))
-				privateKey = privateKey+key;
-			}
-		}else if(addingName){
+			if(closing){}
+			else if(addingKey){
 				if(key == '\n'){
-					//if(userName.equals("y")){
+					messages.add(privateKey);
+					messages.add("Logging into GameJolt");
+					GlobalController.userName = userName;
+					GlobalController.privateKey = privateKey;
+					ArrayList<String> list = GlobalController.logIntoGameJolt();
+					for(int i=0;i<list.size();i++)
+						messages.add(list.get(i));
+					closing = true;
+				}
+				else if((int)key == 8 && privateKey.length() != 0)
+					privateKey = privateKey.substring(0, privateKey.length()-1);
+				else
+					privateKey = privateKey+key;
+			}else if(addingName){
+				if(key == '\n'){
 					addingKey = true;
 					messages.add(userName);
 					messages.add("Enter in your private key associated with your account");
-					//}
-					//else{
-					//	closing = true;
-					//	messages.add(acept);
-					//}
 				}
 				else if((int)key == 8 && userName.length() != 0){
 					userName = userName.substring(0, userName.length()-1);
@@ -163,14 +122,5 @@ public class InitLevel extends Level{
 				}
 			}
 		}
-		//if(key == '\n'){
-		//	
-		//}
-		//if((int)key == 8){
-		//	// backspace
-		//	
-		//}
-		//for(int i=0;i<aiInput.size();i++)
-		//	aiInput.get(i).reactToKey(key, release);
 	}
 }

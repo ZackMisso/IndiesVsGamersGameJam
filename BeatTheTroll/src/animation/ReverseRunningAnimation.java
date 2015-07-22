@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import entities.Entity;
 
 public class ReverseRunningAnimation extends Animation{
-	public int time;
-	public int currentTime;
-	public boolean stop;
+	private int time;
+	private int currentTime;
+	private boolean stop;
 	
 	public ReverseRunningAnimation(Entity en){
 		super(en);

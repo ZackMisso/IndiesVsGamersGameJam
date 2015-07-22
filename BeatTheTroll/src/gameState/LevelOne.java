@@ -23,27 +23,17 @@ import misc.RNG;
 import physics.CollisionEngine;
 
 public class LevelOne extends Level{
-	CollisionEngine cole;
-	public int hammerTimer;
-	//public boolean gameOver;
-	//public boolean restart;
+	private CollisionEngine cole;
+	private int hammerTimer;
 	
 	public LevelOne(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
 		bg = Color.DARK_GRAY;
 		hammerTimer = 50 - 10 * troll.level;
 		cole = new CollisionEngine();
-		//gameOver = false;
-		//restart = false;
 	}
 	
 	public void init(){
-		//PlayerTest play = new PlayerTest();
-		//gameEntities.add(play);
-		//for(int i=0;i<15;i++){
-		//	Block block = new Block(this,new Vec2(200 + 32 * i,500),2);
-		//	gameEntities.add(block);
-		//}
 		troll.reset();
 		((TrollAI)troll.ai).setChances(1);
 		player.pd.pos = new Vec2(300,400);
@@ -55,14 +45,12 @@ public class LevelOne extends Level{
 		aiInput.add((ReactToInputAI)player.ai);
 		gameEntities.add(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
 		gameEntities.add(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
-		//gameEntities.add(new Hammer(this,new Vec2(400,400),false));
 		cole = new CollisionEngine();
 	}
 	
 	public void update(){
 		if(GlobalController.gameOver == true)
 			return;
-		//GlobalController.gameOver = true;
 		hammerTimer--;
 		GlobalController.timeTillAttack--;
 		if(GlobalController.timeTillAttack <= 0){
@@ -87,11 +75,8 @@ public class LevelOne extends Level{
 				GlobalController.level = 4;
 				GlobalController.gameOver = true;
 				GlobalController.addHighScore();
-				//System.exit(0);
-				//return;
 			}
 		}
-		//System.out.println(gameEntities.size());
 		if(hammerTimer <= 0){
 			Vec2 p = new Vec2(RNG.getNextFloat() * 680 + 80,90);
 			gameEntities.add(new Hammer(this,p));
@@ -110,14 +95,11 @@ public class LevelOne extends Level{
 				extraAnimations.remove(i--);
 		}
 		for(int i = 0;i<entitiesToRemove.size();i++){
-			//System.out.println("REMOVING ENTITY");
 			gameEntities.remove(entitiesToRemove.get(0));
 			entitiesToRemove.remove(0);
 		}
-		//cole.update(gameEntities.get(0), null, gameEntities);
-		if(restart){
+		if(restart)
 			gsm.restart();
-		}
 	}
 	
 	public void draw(Graphics2D g){

@@ -14,32 +14,32 @@ import misc.RNG;
 import physics.DynamicPhysicsData;
 
 public class TrollAI implements AI{
-	public Troll troll;
-	public float accuracy;
-	public float chanceMoveX; // out of 100
-	public float chanceMoveY; // out of 100
-	public float chanceAttackPlayer; // out of 100
-	public float chanceHole; // out of 100
-	public float chanceTroll;
+	private Troll troll;
+	private float accuracy;
+	private float chanceMoveX; // out of 100
+	private float chanceMoveY; // out of 100
+	private float chanceAttackPlayer; // out of 100
+	private float chanceHole; // out of 100
+	private float chanceTroll;
 	//public int movingTime;
-	public int activityTimer;
-	public int timer;
-	public int fireTimer;
-	public int hammerTimer;
-	public int blastTimer;
-	public boolean moveAlongY;
-	public boolean moveAlongX;
-	public boolean moveAlongBoth;
-	public boolean moveToSpace;
-	public boolean throwing;
-	public boolean shooting;
-	public boolean trolling;
-	public boolean genHoles;
-	public boolean active;
-	public boolean gone;
-	public Vec2 moveTo;
-	public Vec2 vel;
-	public float speed;
+	private int activityTimer;
+	private int timer;
+	private int fireTimer;
+	private int hammerTimer;
+	private int blastTimer;
+	private boolean moveAlongY;
+	private boolean moveAlongX;
+	private boolean moveAlongBoth;
+	private boolean moveToSpace;
+	private boolean throwing;
+	private boolean shooting;
+	private boolean trolling;
+	private boolean genHoles;
+	private boolean active;
+	private boolean gone;
+	private Vec2 moveTo;
+	private Vec2 vel;
+	private float speed;
 	
 	public TrollAI(Troll param){
 		troll = param;

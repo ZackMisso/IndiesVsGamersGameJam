@@ -7,8 +7,8 @@ package physics;
 import math.Vec2;
 
 public abstract class PhysicsData {
-	public Vec2 pos;
-	public Vec2 siz;
+	private Vec2 pos;
+	private Vec2 siz;
 	
 	PhysicsData(Vec2 a, Vec2 b){
 		pos = a;

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 //import entities.Item;
 
 public class PlayerStatus {
-	//public ArrayList<Item> items;
-	public long score;
+	//private ArrayList<Item> items;
+	private long score;
 	
 	public PlayerStatus(){
 		//items = new ArrayList<>();

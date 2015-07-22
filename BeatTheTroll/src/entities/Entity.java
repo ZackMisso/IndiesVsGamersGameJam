@@ -15,20 +15,20 @@ import physics.PhysicsData;
 import physics.SimplePhysicsData;
 
 public abstract class Entity {
-	public Animation anim;
-	public PhysicsData pd;
-	public AI ai;
-	public Level ref;
-	public int damage;
-	public boolean harmfulToP;
-	public boolean alive;
-	public boolean collidingRight;
-	public boolean collidingLeft;
-	public boolean collidingUp;
-	public boolean collidingDown;
-	public boolean jumping;
-	public boolean onGround;
-	public boolean jumpInAir;
+	private Animation anim;
+	private PhysicsData pd;
+	private AI ai;
+	private Level ref;
+	private int damage;
+	private boolean harmfulToP;
+	private boolean alive;
+	private boolean collidingRight;
+	private boolean collidingLeft;
+	private boolean collidingUp;
+	private boolean collidingDown;
+	private boolean jumping;
+	private boolean onGround;
+	private boolean jumpInAir;
 	
 	public Entity(Level param){
 		anim = null;

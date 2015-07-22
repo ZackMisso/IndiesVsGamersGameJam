@@ -9,9 +9,9 @@ import physics.DynamicPhysicsData;
 import tests.PlayerTest;
 
 public class PlayerAI implements ReactToInputAI{
-	public Player player;
-	boolean right;
-	boolean up;
+	private Player player;
+	private boolean right;
+	private boolean up;
 		
 	public PlayerAI(Player p){
 		player = p;

@@ -16,7 +16,5 @@ public class BlastAnimation extends Animation{
 			images.add(en.ref.gsm.parser.getImage("Blast"));
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 }

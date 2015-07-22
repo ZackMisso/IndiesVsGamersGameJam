@@ -8,7 +8,7 @@ import animation.ButtonAnimation;
 import entities.UIButton;
 
 public class ButtonAI implements ReactToInputAI{
-	public UIButton button;
+	private UIButton button;
 	
 	public ButtonAI(UIButton param){
 		button = param;

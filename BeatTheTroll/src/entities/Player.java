@@ -16,10 +16,10 @@ import physics.Manifold;
 import tests.TestAnimation;
 
 public class Player extends Entity{
-	public GameStateManager gsmRef;
-	public int invulnerableTimer;
-	public boolean invulnerable;
-	public boolean flip;
+	private GameStateManager gsmRef;
+	private int invulnerableTimer;
+	private boolean invulnerable;
+	private boolean flip;
 	
 	public Player(GameStateManager ref){
 		super(null);

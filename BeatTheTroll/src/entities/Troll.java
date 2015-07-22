@@ -15,9 +15,9 @@ import physics.DynamicPhysicsData;
 import physics.Manifold;
 
 public class Troll extends Entity{
-	public GameStateManager gsmRef;
-	public int level;
-	public boolean first;
+	private GameStateManager gsmRef;
+	private int level;
+	private boolean first;
 	
 	public Troll(GameStateManager ref){
 		super(null);
@@ -83,7 +83,5 @@ public class Troll extends Entity{
 		}
 	}
 	
-	public void resetToDefaultAnimation(){
-		
-	}
+	public void resetToDefaultAnimation(){}
 }

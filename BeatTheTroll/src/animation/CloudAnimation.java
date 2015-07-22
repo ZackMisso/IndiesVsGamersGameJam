@@ -8,7 +8,7 @@ import entities.Entity;
 import gameState.GameStateManager;
 
 public class CloudAnimation extends Animation{
-	public GameStateManager gsm;
+	private GameStateManager gsm;
 	
 	public CloudAnimation(GameStateManager ref){
 		super(null);
@@ -16,7 +16,5 @@ public class CloudAnimation extends Animation{
 		images.add(gsm.parser.getImage("Cloud"));
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 }

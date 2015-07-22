@@ -15,7 +15,5 @@ public class BlockAnimation extends Animation{
 			images.add(en.ref.gsm.parser.getImage("Block"));
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 }

@@ -8,10 +8,10 @@ import math.Vec2;
 
 public class CollisionBox {
 	//public Vec2 offset;
-	public float reducMinx;
-	public float reducMaxx;
-	public float reducMiny;
-	public float reducMaxy;
+	private float reducMinx;
+	private float reducMaxx;
+	private float reducMiny;
+	private float reducMaxy;
 	
 	public CollisionBox(){
 		reducMinx = 0;

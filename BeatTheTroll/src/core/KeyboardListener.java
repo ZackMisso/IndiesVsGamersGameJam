@@ -22,7 +22,5 @@ public class KeyboardListener implements KeyListener {
 		thread.gsm.handleKey(event.getKeyChar(), true);
 	}
 	
-	public void keyTyped(KeyEvent event){
-		//keyPressed(event);
-	}
+	public void keyTyped(KeyEvent event){}
 }

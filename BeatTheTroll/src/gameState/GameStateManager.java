@@ -22,23 +22,22 @@ import misc.PlayerStatus;
 import tests.TestLevel;
 
 public class GameStateManager {
-	public Game game;
-	public ImageParser parser;
-	public Level currentLevel;
-	public Player player;
-	public PlayerStatus status;
-	public Troll troll;
-	public SoundEngine sound;
-	public Image bg;
-	public Joystick joystick;
-	public String progCred;
-	public String musicCred;
-	public UIButton startButton;
-	public UIButton selectButton;
-	public UIButton aButton;
-	public UIButton bButton;
-	//public GameOverAnimation overAnim;
-	public int level;
+	private Game game;
+	private ImageParser parser;
+	private Level currentLevel;
+	private Player player;
+	private PlayerStatus status;
+	private Troll troll;
+	private SoundEngine sound;
+	private Image bg;
+	private Joystick joystick;
+	private String progCred;
+	private String musicCred;
+	private UIButton startButton;
+	private UIButton selectButton;
+	private UIButton aButton;
+	private UIButton bButton;
+	private int level;
 	
 	public GameStateManager(Game param){
 		game = param;

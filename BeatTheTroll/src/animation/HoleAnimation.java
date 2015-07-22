@@ -15,7 +15,5 @@ public class HoleAnimation extends Animation{
 			images.add(en.ref.gsm.parser.getImage("Hole"));
 	}
 	
-	public void update(){
-		
-	}
+	public void update(){}
 }
