@@ -20,12 +20,12 @@ public class Hammer extends Entity{
 		super(lev);
 		ai = null;
 		DynamicPhysicsData tmp = new DynamicPhysicsData(pos, new Vec2(40,40));
-		tmp.acc.y = .3f;
-		tmp.vel.y = -2f * RNG.getNextFloat();
-		tmp.vel.x = RNG.getNextFloat();
+		tmp.getAcc().y = .3f;
+		tmp.getVel().y = -2f * RNG.getNextFloat();
+		tmp.getVel().x = RNG.getNextFloat();
 		boolean rev = false;
 		if(RNG.getNextBool()){
-			tmp.vel.x *= -1;
+			tmp.getVel().x *= -1;
 			rev = true;
 		}
 		pd = tmp;
@@ -37,11 +37,11 @@ public class Hammer extends Entity{
 		super(lev);
 		ai = null;
 		DynamicPhysicsData tmp = new DynamicPhysicsData(pos, new Vec2(40,40));
-		tmp.acc.y = .03f;
-		tmp.vel.y = -2f * RNG.getNextFloat();
-		tmp.vel.x = RNG.getNextFloat();
+		tmp.getAcc().y = .03f;
+		tmp.getVel().y = -2f * RNG.getNextFloat();
+		tmp.getVel().x = RNG.getNextFloat();
 		if(RNG.getNextBool())
-			tmp.vel.x *= -1;
+			tmp.getVel().x *= -1;
 		pd = tmp;
 		anim = new HammerAnimation(this,rev);
 		harmfulToP = true;
@@ -50,7 +50,7 @@ public class Hammer extends Entity{
 	public void update(){
 		super.update();
 		if(this.outOfBounds())
-			ref.entitiesToRemove.add(this);
+			getRef().addEntityToRemove(this);
 	}
 	
 	public void handleManifold(Manifold fold){
@@ -61,7 +61,7 @@ public class Hammer extends Entity{
 				int val = 50 * GlobalController.level;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation((-val)+"");
-				getRef().addExtraAnimation(new LimitAnimation(a,fold.one.pd.pos,30,true));
+				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
 				p.nowInvulnerable(20);
 			}
 		}

@@ -35,17 +35,16 @@ public class Bomb extends Entity{
 			}
 		}else
 			if(this.outOfBounds())
-				getRef().addEntityToRemove.add(this);
+				getRef().addEntityToRemove(this);
 	}
 	
 	public void explode(){
-		pd.pos.x -= 4;
-		pd.translate(-4,0);
-		getRef().addExtraAnimation(new LimitAnimation(new ExplosionAnimation(getRef(),pd.pos),pd.pos,40,true));
+		getPD().getPos().x -= 4;
+		getRef().addExtraAnimation(new LimitAnimation(new ExplosionAnimation(getRef(),getPD().getPos()),getPD().getPos(),40,true));
 	}
 	
 	public void handleManifold(Manifold fold){
-		if(fold.one instanceof Player || fold.one instanceof PlayerTest){
+		if(fold.getOne() instanceof Player || fold.getOne() instanceof PlayerTest){
 			explode();
 			getRef().addEntityToRemove(this);
 			Player p = (Player)fold.getOne();
@@ -53,7 +52,7 @@ public class Bomb extends Entity{
 				int val = 100 * GlobalController.level;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
-				getRef().addExtraAnimation(new LimitAnimation(a,fold.one.pd.pos,30,true));
+				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
 				p.invulnerable = true;
 				p.invulnerableTimer = 20;
 			}

@@ -5,15 +5,11 @@
 package animation;
 
 import entities.Entity;
-import entities.Troll;
 
 public class TrollAnimation extends Animation{
-	private int face;
-	
 	public TrollAnimation(Entity en){
 		super(en);
-		images.add(en.getParser().getImage("TrollOne"));
-		face = 1;
+		getImages().add(getImage("TrollOne"));
 	}
 	
 	public void update(){
@@ -21,26 +17,22 @@ public class TrollAnimation extends Animation{
 	}
 	
 	public void switchToFace1(){
-		images.clear();
-		face = 1;
-		images.add(getEn().getParser().getImage("TrollOne"));
+		getImages().clear();
+		getImages().add(getImage("TrollOne"));
 	}
 	
 	public void switchToFace2(){
-		images.clear();
-		face = 2;
-		images.add(getEn().getParser().getImage("TrollTwo"));
+		getImages().clear();
+		getImages().add(getImage("TrollTwo"));
 	}
 	
 	public void switchToFace3(){
-		images.clear();
-		face = 3;
-		images.add(getEn().getParser().getImage("TrollFour"));
+		getImages().clear();
+		getImages().add(getImage("TrollFour"));
 	}
 	
 	public void switchToFace4(){
-		images.clear();
-		face = 4;
-		images.add(getEn().getParser().getImage("TrollThree"));
+		getImages().clear();
+		getImages().add(getImage("TrollThree"));
 	}
 }

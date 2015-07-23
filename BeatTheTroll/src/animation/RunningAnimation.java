@@ -33,26 +33,38 @@ public class RunningAnimation extends Animation{
 		if(!reverse){
 			currentTime++;
 			if(currentTime >= time){
-				currentIndex++;
-				if(currentIndex == images.size() && stop)
-					ref.resetToDefaultAnimation();
+				incrementCurrentIndex();
+				if(getCurrentIndex() == getImages().size() && stop)
+					getRef().resetToDefaultAnimation();
 				else{
 					currentTime = 0;
-					if(currentIndex == images.size())
-						currentIndex = 0;
+					if(getCurrentIndex() == getImages().size())
+						switchToIndex(0);
 				}
 			}
 		}else{
 			currentTime++;
 			if(currentTime >= time){
-				currentIndex--;
-				if(currentIndex == 0 && stop)
-					ref.resetToDefaultAnimation();
+				decrementCurrentIndex();
+				if(getCurrentIndex() == 0 && stop)
+					getRef().resetToDefaultAnimation();
 				else{
 					currentTime = 0;
-					currentIndex = images.size()-1;
+					switchToIndex(getImages().size()-1);
 				}
 			}
 		}
 	}
+	
+	// getter methods
+	public int getTime(){return time;}
+	public int getCurrentTime(){return currentTime;}
+	public boolean getStop(){return stop;}
+	public boolean getReverse(){return reverse;}
+	
+	// setter methods
+	public void setTime(int param){time=param;}
+	public void setCurrentTime(int param){currentTime=param;}
+	public void setStop(boolean param){stop=param;}
+	public void setReverse(boolean param){reverse=param;}
 }

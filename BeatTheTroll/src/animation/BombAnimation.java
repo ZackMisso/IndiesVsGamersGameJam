@@ -9,7 +9,7 @@ import entities.Entity;
 public class BombAnimation extends Animation{
 	public BombAnimation(Entity en){
 		super(en);
-		images.add(en.getParser().getImage("Bomb"));
+		getImages().add(en.getParser().getImage("Bomb"));
 	}
 	
 	public void update(){}

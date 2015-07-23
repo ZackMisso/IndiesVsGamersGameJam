@@ -33,8 +33,8 @@ public class LevelThree extends Level{
 	
 	public void init(){
 		getTroll().reset();
-		((TrollAI)getTroll().ai).setChances(3);
-		getPlayer().pd.pos = new Vec2(300,400);
+		((TrollAI)getTroll().getAI()).setChances(3);
+		getPlayer().getPD().setPos(new Vec2(300,400));
 		getPlayer().switchToStanding();
 		for(int i=0;i<23;i++)
 			addEntity(new Block(this,new Vec2(81 + i*32,536),1));
@@ -42,7 +42,7 @@ public class LevelThree extends Level{
 			addEntity(new Block(this,new Vec2(81 + i*32,568),1));
 		addEntity(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
 		addEntity(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
-		addInputAI((ReactToInputAI)getPlayer().ai);
+		addInputAI((ReactToInputAI)getPlayer().getAI());
 		cole = new CollisionEngine();
 	}
 	

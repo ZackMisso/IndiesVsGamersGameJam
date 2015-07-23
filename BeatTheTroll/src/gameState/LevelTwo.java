@@ -21,7 +21,6 @@ import misc.RNG;
 import physics.CollisionEngine;
 
 public class LevelTwo extends Level{
-	private CollisionEngine cole;
 	private int cloudTimer;
 	private int bombTimer;
 	private int levelTimer;
@@ -32,20 +31,18 @@ public class LevelTwo extends Level{
 		cloudTimer = 200;
 		bombTimer = 92 - 12 * getTroll().getLevel();
 		levelTimer = 2000;
-		cole = new CollisionEngine();
 	}
 	
 	public void init(){
 		getTroll().reset();
-		((TrollAI)getTroll().ai).setChances(2);
+		((TrollAI)getTroll().getAI()).setChances(2);
 		getPlayer().switchToFalling();
-		addInputAI((ReactToInputAI)getPlayer().ai);
-		getPlayer().pd.pos = new Vec2(420,300);
+		addInputAI((ReactToInputAI)getPlayer().getAI());
+		getPlayer().getPD().setPos(new Vec2(420,300));
 		addEntity(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
 		addEntity(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
 		addEntity(new InvisEntity(this, new Vec2(80,130),new Vec2(800,40)));
 		addEntity(new InvisEntity(this, new Vec2(80,540),new Vec2(800,40)));
-		cole = new CollisionEngine();
 	}
 	
 	public void update(){
@@ -58,7 +55,7 @@ public class LevelTwo extends Level{
 			Vec2 v = new Vec2(0,-1.5f);
 			CloudAnimation c = new CloudAnimation(getGSM());
 			LimitAnimation a = new LimitAnimation(c,p, 400, true);
-			a.vel = v;
+			a.setVel(v);
 			addExtraAnimation(a);
 			cloudTimer = 250;
 		}

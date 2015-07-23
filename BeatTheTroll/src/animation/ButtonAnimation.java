@@ -9,16 +9,16 @@ import entities.Entity;
 public class ButtonAnimation extends Animation {	
 	public ButtonAnimation(Entity en){
 		super(en);
-		images = en.getParser().getImages("Button",2);
+		setImages(en.getParser().getImages("Button",2));
 	}
 	
 	public void update(){}
 	
 	public void press(){
-		currentIndex = 1;
+		switchToIndex(2);
 	}
 	
 	public void release(){
-		currentIndex = 0;
+		switchToIndex(0);
 	}
 }

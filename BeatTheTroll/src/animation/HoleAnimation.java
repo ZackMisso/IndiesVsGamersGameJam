@@ -10,9 +10,9 @@ public class HoleAnimation extends Animation{
 	public HoleAnimation(Entity en, boolean sideways){
 		super(en);
 		if(sideways)
-			images.add(en.getParser().getImage("SideHole"));
+			getImages().add(en.getParser().getImage("SideHole"));
 		else
-			images.add(en.getParser().getImage("Hole"));
+			getImages().add(en.getParser().getImage("Hole"));
 	}
 	
 	public void update(){}

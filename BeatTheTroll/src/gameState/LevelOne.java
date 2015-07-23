@@ -7,8 +7,6 @@ package gameState;
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-// This is the main fight level
-
 import ai.ReactToInputAI;
 import ai.TrollAI;
 import entities.Block;
@@ -20,7 +18,6 @@ import entities.Troll;
 import math.Vec2;
 import misc.GlobalController;
 import misc.RNG;
-import physics.CollisionEngine;
 
 public class LevelOne extends Level{
 	private int hammerTimer;
@@ -33,17 +30,16 @@ public class LevelOne extends Level{
 	
 	public void init(){
 		getTroll().reset();
-		((TrollAI)getTroll().ai).setChances(1);
-		getPlayer().pd.pos = new Vec2(300,400);
+		((TrollAI)getTroll().getAI()).setChances(1);
+		getPlayer().getPD().setPos(new Vec2(300,400));
 		getPlayer().switchToStanding();
 		for(int i=0;i<15;i++){
 			Block block = new Block(this,new Vec2(200 + 32 * i,500),2);
 			addEntity(block);
 		}
-		aiInput.add((ReactToInputAI)player.ai);
-		gameEntities.add(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
-		gameEntities.add(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
-		cole = new CollisionEngine();
+		addInputAI((ReactToInputAI)getPlayer().getAI());
+		addEntity(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
+		addEntity(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
 	}
 	
 	public void update(){

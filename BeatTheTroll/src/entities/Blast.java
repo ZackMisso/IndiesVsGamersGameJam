@@ -25,10 +25,10 @@ public class Blast extends Entity{
 		DynamicPhysicsData tmp;
 		if(reverse){
 			tmp = new DynamicPhysicsData(pos, new Vec2(20,20));
-			tmp.vel.x = -2.0f;
+			tmp.getVel().x = -2.0f;
 		}else{
 			tmp = new DynamicPhysicsData(pos, new Vec2(20,20));
-			tmp.vel.x = 2.0f;
+			tmp.getVel().x = 2.0f;
 		}
 		pd = tmp;
 		harmfulToP = true;

@@ -9,12 +9,12 @@ import entities.Entity;
 public class HammerAnimation extends RunningAnimation{
 	public HammerAnimation(Entity en, boolean rev){
 		super(en);
-		time = 10;
-		currentTime = 0;
-		stop = false;
-		images = en.ref.gsm.parser.getImages("Hammer", 4);
-		reverse = rev;
+		setTime(10);
+		setCurrentTime(0);
+		setStop(false);
+		setImages(en.getParser().getImages("Hammer", 4));
+		setReverse(rev);
 		if(rev)
-			currentTime = 3;
+			setCurrentTime(3);
 	}
 }

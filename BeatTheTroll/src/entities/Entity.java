@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 
 import ai.AI;
 import animation.Animation;
+import art.ImageParser;
 import gameState.Level;
 import math.Vec2;
 import physics.Manifold;
@@ -22,7 +23,6 @@ public abstract class Entity {
 	private int damage;
 	private boolean harmfulToP;
 	private boolean alive;
-	private boolean jumping;
 	private boolean onGround;
 	private boolean jumpInAir;
 	
@@ -33,10 +33,9 @@ public abstract class Entity {
 		ref = param;
 		harmfulToP = false;
 		alive = true;
-		jumping = false;
 		jumpInAir = false;
 		onGround = false;
-		clearCollides();
+		damage = 0;
 	}
 	
 	public Entity(Level l, Animation a, PhysicsData data, AI i){
@@ -46,10 +45,9 @@ public abstract class Entity {
 		pd = data;
 		harmfulToP = false;
 		alive = true;
-		jumping = false;
 		jumpInAir = false;
 		onGround = false;
-		clearCollides();
+		damage = 0;
 	}
 	
 	public Entity(Level l, Animation a, Vec2 pos, Vec2 siz, AI i){
@@ -59,37 +57,28 @@ public abstract class Entity {
 		ai = i;
 		harmfulToP = false;
 		alive = true;
-		jumping = false;
 		jumpInAir = false;
 		onGround = false;
-		clearCollides();
-	}
-	
-	public void clearCollides(){
-		collidingRight = false;
-		collidingLeft = false;
-		collidingUp = false;
-		collidingDown = false;
+		damage = 0;
 	}
 	
 	public boolean outOfBounds(){
-		if(pd.pos.y > 121 + 478)
+		if(pd.getPos().y > 121 + 478)
 			return true;
-		if(pd.pos.y + pd.siz.y < 121)
+		if(pd.getPos().y + pd.getSiz().y < 121)
 			return true;
-		if(pd.pos.x > 81 + 718)
+		if(pd.getPos().x > 81 + 718)
 			return true;
-		if(pd.pos.x + pd.siz.x < 81)
+		if(pd.getPos().x + pd.getSiz().x < 81)
 			return true;
 		return false;
 	}
 	
 	public void setPos(Vec2 p){
-		pd.pos = p;
+		pd.setPos(p);
 	}
 	
 	public void update(){
-		clearCollides();
 		if(ai != null)
 			ai.update();
 		if(anim != null)
@@ -98,10 +87,7 @@ public abstract class Entity {
 	}
 	
 	public void draw(Graphics2D g){
-		if(ref!=null)
-			anim.draw(g, pd.pos.add(ref.offset.neg(true),false));
-		else
-			anim.draw(g, pd.pos);
+		anim.draw(g, pd.getPos());
 	}
 	
 	public void updateAnimation(){
@@ -126,7 +112,11 @@ public abstract class Entity {
 	// getter methods
 	public Level getRef(){return ref;}
 	public Animation getAnim() {return anim;}
+	public PhysicsData getPD(){return pd;}
+	public AI getAI(){return ai;}
+	public int getDamage(){return damage;}
 	
 	// setter methods
 	public void setHarmfulToP(boolean param){harmfulToP = param;}
+	public void setDamage(int param){damage=param;}
 }

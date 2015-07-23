@@ -25,12 +25,12 @@ public class ReverseRunningAnimation extends Animation{
 	public void update(){
 		currentTime++;
 		if(currentTime == time){
-			currentIndex++;
-			if(currentIndex == images.size() && stop)
-				ref.resetToDefaultAnimation();
+			incrementCurrentIndex();
+			if(getCurrentIndex() == getImages().size() && stop)
+				getRef().resetToDefaultAnimation();
 			else{
 				currentTime = 0;
-				currentIndex = 0;
+				switchToIndex(0);
 			}
 		}
 	}

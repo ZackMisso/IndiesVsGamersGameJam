@@ -25,7 +25,7 @@ public class InitLevel extends Level{
 	
 	public InitLevel(GameStateManager gsm,Player p, Troll t){
 		super(gsm,p,t);
-		bg = Color.BLACK;
+		setBG(Color.BLACK);
 		acept = "";
 		userName = "";
 		privateKey = "";
@@ -45,7 +45,7 @@ public class InitLevel extends Level{
 		if(closing){
 			timer++;
 			if(timer >= 70)
-				gsm.transition();
+				getGSM().transition();
 		}
 	}
 	

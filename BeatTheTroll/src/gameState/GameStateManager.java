@@ -22,7 +22,6 @@ import misc.PlayerStatus;
 import tests.TestLevel;
 
 public class GameStateManager {
-	private Game game;
 	private ImageParser parser;
 	private Level currentLevel;
 	private Player player;
@@ -40,7 +39,6 @@ public class GameStateManager {
 	private int level;
 	
 	public GameStateManager(Game param){
-		game = param;
 		parser = new ImageParser();
 		player = new Player(this);
 		troll = new Troll(this);
@@ -67,11 +65,11 @@ public class GameStateManager {
 		selectButton = new UIButton(currentLevel,new Vec2(440,595), new Vec2(),1);
 		aButton = new UIButton(currentLevel,new Vec2(710,575), new Vec2(),2);
 		bButton = new UIButton(currentLevel,new Vec2(635,600), new Vec2(),3);
-		currentLevel.addInputAI((ReactToInputAI)joystick.ai);
-		currentLevel.addInputAI((ReactToInputAI)startButton.ai);
-		currentLevel.addInputAI((ReactToInputAI)selectButton.ai);
-		currentLevel.addInputAI((ReactToInputAI)aButton.ai);
-		currentLevel.addInputAI((ReactToInputAI)bButton.ai);
+		currentLevel.addInputAI((ReactToInputAI)joystick.getAI());
+		currentLevel.addInputAI((ReactToInputAI)startButton.getAI());
+		currentLevel.addInputAI((ReactToInputAI)selectButton.getAI());
+		currentLevel.addInputAI((ReactToInputAI)aButton.getAI());
+		currentLevel.addInputAI((ReactToInputAI)bButton.getAI());
 	}
 	
 	public void update(){
@@ -142,11 +140,6 @@ public class GameStateManager {
 		parser.clearCache();
 		currentLevel = new InitLevel(this, null, null);
 		currentLevel.init();
-		setRefForStuff();
-	}
-	
-	public void transitionToTitle(){
-		parser.clearCache();
 		setRefForStuff();
 	}
 	

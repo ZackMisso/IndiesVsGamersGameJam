@@ -15,10 +15,9 @@ public class ExplosionAnimation extends Animation{
 	
 	public ExplosionAnimation(Level param, Vec2 param2){
 		super(null);
-		//images.add(lev.gsm.parser.getImage("Explosion"));
 		lev = param;
 		pos = param2;
-		images.add(lev.getGSM().getParser().getImage("Explosion"));
+		getImages().add(lev.getGSM().getParser().getImage("Explosion"));
 	}
 	
 	public void update(){
@@ -26,7 +25,7 @@ public class ExplosionAnimation extends Animation{
 	}
 	
 	public void draw(Graphics2D g){
-		if(visible)
-			g.drawImage(images.get(currentIndex),(int)pos.x,(int)pos.y,null);
+		if(getVisible())
+			g.drawImage(getImages().get(getCurrentIndex()),(int)pos.x,(int)pos.y,null);
 	}
 }

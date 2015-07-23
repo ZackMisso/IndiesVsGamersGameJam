@@ -24,6 +24,7 @@ public class Player extends Entity{
 	private boolean collidingLeft;
 	private boolean collidingUp;
 	private boolean collidingDown;
+	private boolean jumping;
 	
 	public Player(GameStateManager ref){
 		super(null);
@@ -37,10 +38,19 @@ public class Player extends Entity{
 		invulnerableTimer = 0;
 		invulnerable = false;
 		flip = true;
+		jumping = false;
+	}
+	
+	public void clearCollides(){
+		collidingRight=false;
+		collidingLeft=false;
+		collidingUp=false;
+		collidingDown=false;
 	}
 	
 	public void update(){
 		super.update();
+		clearCollides();
 		if(invulnerable){
 			invulnerableTimer--;
 			if(invulnerableTimer <= 0){
@@ -104,10 +114,12 @@ public class Player extends Entity{
 	public boolean getCollidingLeft(){return collidingLeft;}
 	public boolean getCollidingUp(){return collidingUp;}
 	public boolean getCollidingDown(){return collidingDown;}
+	public boolean getJumping(){return jumping;}
 	
 	// setter methods
 	public void setCollidingRight(boolean param){collidingRight = param;}
 	public void setCollidingLeft(boolean param){collidingLeft = param;}
 	public void setCollidingUp(boolean param){collidingUp=param;}
 	public void setCollidingDown(boolean param){collidingDown=param;}
+	public void setJumping(boolean param){jumping=param;}
 }

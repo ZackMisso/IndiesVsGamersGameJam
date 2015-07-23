@@ -7,7 +7,6 @@ package ai;
 import entities.Blast;
 import entities.Hammer;
 import entities.Hole;
-import entities.Player;
 import entities.Troll;
 import math.Vec2;
 import misc.RNG;
@@ -15,13 +14,10 @@ import physics.DynamicPhysicsData;
 
 public class TrollAI implements AI{
 	private Troll troll;
-	//private float accuracy;
 	private float chanceMoveX; // out of 100
 	private float chanceMoveY; // out of 100
 	private float chanceAttackPlayer; // out of 100
 	private float chanceHole; // out of 100
-	//private float chanceTroll;
-	//public int movingTime;
 	private int activityTimer;
 	private int timer;
 	private int fireTimer;
@@ -29,16 +25,13 @@ public class TrollAI implements AI{
 	private int blastTimer;
 	private boolean moveAlongY;
 	private boolean moveAlongX;
-	//private boolean moveAlongBoth;
 	private boolean moveToSpace;
 	private boolean throwing;
 	private boolean shooting;
 	private boolean trolling;
-	//private boolean genHoles;
 	private boolean active;
 	private boolean gone;
 	private Vec2 moveTo;
-	//private Vec2 vel;
 	private float speed;
 	
 	public TrollAI(Troll param){
@@ -49,12 +42,10 @@ public class TrollAI implements AI{
 		chanceHole = 5;
 		moveAlongX = false;
 		moveAlongY = false;
-		moveAlongBoth = false;
 		moveToSpace = false;
 		shooting = false;
 		throwing = false;
 		trolling = false;
-		genHoles = false;
 		active = false;
 		gone = false;
 	}
@@ -68,12 +59,10 @@ public class TrollAI implements AI{
 	public void setAllFalse(){
 		moveAlongX = false;
 		moveAlongY = false;
-		moveAlongBoth = false;
 		moveToSpace = false;
 		throwing = false;
 		shooting = false;
 		trolling = false;
-		genHoles = false;
 		active = false;
 	}
 	
@@ -83,9 +72,9 @@ public class TrollAI implements AI{
 				fireTimer--;
 				if(fireTimer <= 0){
 					// fire hammer
-					Vec2 p = new Vec2(troll.pd.pos.x + troll.pd.siz.x/2,troll.pd.pos.y + troll.pd.siz.y/2);
+					Vec2 p = new Vec2(troll.getPD().getPos().x + troll.getPD().getSiz().x/2,troll.getPD().getPos().y + troll.getPD().getSiz().y/2);
 					Hammer h = new Hammer(troll.getRef(), p);
-					h.damage = 50 * troll.getLevel();
+					h.setDamage(50 * troll.getLevel());
 					troll.getRef().addEntity(h);
 					fireTimer = hammerTimer;
 				}
@@ -94,9 +83,9 @@ public class TrollAI implements AI{
 				fireTimer--;
 				if(fireTimer <= 0){
 					// fire blast
-					Vec2 p = new Vec2(troll.pd.pos.x + troll.pd.siz.x/2,troll.pd.pos.y + troll.pd.siz.y/2);
+					Vec2 p = new Vec2(troll.getPD().getPos().x + troll.getPD().getSiz().x/2,troll.getPD().getPos().y + troll.getPD().getSiz().y/2);
 					Blast b = new Blast(troll.getRef(),p,false);
-					b.damage = 100 * troll.getLevel();
+					b.setDamage(100 * troll.getLevel());
 					troll.getRef().addEntity(b);
 					fireTimer = blastTimer;
 				}
@@ -113,62 +102,62 @@ public class TrollAI implements AI{
 				timer--;
 				if(moveAlongX){
 					if(!moveToSpace){
-						if(troll.pd.pos.x <= 100){
-							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-							tmp.vel = new Vec2(speed,0);
+						if(troll.getPD().getPos().x <= 100){
+							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+							tmp.setVel(new Vec2(speed,0));
 						}
-						else if(troll.pd.pos.x >= 700){
-							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-							tmp.vel = new Vec2(-speed,0);
+						else if(troll.getPD().getPos().x >= 700){
+							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+							tmp.setVel(new Vec2(-speed,0));
 						}
 					}else{
-						Vec2 dist = new Vec2(moveTo.x - troll.pd.pos.x,moveTo.y - troll.pd.pos.y);
+						Vec2 dist = new Vec2(moveTo.x - troll.getPD().getPos().x,moveTo.y - troll.getPD().getPos().y);
 						Vec2 distNorm = dist.norm();
-						DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-						tmp.vel = new Vec2(distNorm.x * speed, distNorm.y * speed);
-						float x = moveTo.x - troll.pd.pos.x;
-						float y = moveTo.y - troll.pd.pos.y;
+						DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+						tmp.setVel(new Vec2(distNorm.x * speed, distNorm.y * speed));
+						float x = moveTo.x - troll.getPD().getPos().x;
+						float y = moveTo.y - troll.getPD().getPos().y;
 						if(x*x+y*y <= 100){
 							moveToSpace = false;
-							tmp.vel = new Vec2(0,0);
+							tmp.setVel(new Vec2(0,0));
 						}
 					}
 				}else if(moveAlongY){
 					if(!moveToSpace){
-						if(troll.pd.pos.y <= 150){
-							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-							tmp.vel = new Vec2(0,speed);
+						if(troll.getPD().getPos().y <= 150){
+							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+							tmp.setVel(new Vec2(0,speed));
 						}
-						else if(troll.pd.pos.y >= 500){
-							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-							tmp.vel = new Vec2(0,-speed);
+						else if(troll.getPD().getPos().y >= 500){
+							DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+							tmp.setVel(new Vec2(0,-speed));
 						}
 					}else{
-						Vec2 dist = new Vec2(moveTo.x - troll.pd.pos.x,moveTo.y - troll.pd.pos.y);
+						Vec2 dist = new Vec2(moveTo.x - troll.getPD().getPos().x,moveTo.y - troll.getPD().getPos().y);
 						Vec2 distNorm = dist.norm();
-						DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-						tmp.vel = new Vec2(distNorm.x * speed, distNorm.y * speed);
-						float x = moveTo.x - troll.pd.pos.x;
-						float y = moveTo.y - troll.pd.pos.y;
+						DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+						tmp.setVel(new Vec2(distNorm.x * speed, distNorm.y * speed));
+						float x = moveTo.x - troll.getPD().getPos().x;
+						float y = moveTo.y - troll.getPD().getPos().y;
 						if(x*x+y*y <= 100){
 							moveToSpace = false;
 							shooting = true;
 							throwing = false;
-							tmp.vel = new Vec2(0,0);
+							tmp.setVel(new Vec2(0,0));
 						}
 					}
 				}else if(moveToSpace){
-					Vec2 dist = new Vec2(moveTo.x - troll.pd.pos.x,moveTo.y - troll.pd.pos.y);
+					Vec2 dist = new Vec2(moveTo.x - troll.getPD().getPos().x,moveTo.y - troll.getPD().getPos().y);
 					Vec2 distNorm = dist.norm();
-					DynamicPhysicsData tmp = (DynamicPhysicsData)troll.pd;
-					tmp.vel = new Vec2(distNorm.x * speed, distNorm.y * speed);
-					float x = moveTo.x - troll.pd.pos.x;
-					float y = moveTo.y - troll.pd.pos.y;
+					DynamicPhysicsData tmp = (DynamicPhysicsData)troll.getPD();
+					tmp.setVel(new Vec2(distNorm.x * speed, distNorm.y * speed));
+					float x = moveTo.x - troll.getPD().getPos().x;
+					float y = moveTo.y - troll.getPD().getPos().y;
 					if(x*x+y*y <= 100){
 						moveToSpace = false;
 						throwing = false;
 						active = false;
-						tmp.vel = new Vec2(0,0);
+						tmp.setVel(new Vec2(0,0));
 					}
 				}
 				if(timer <= 0)
@@ -204,7 +193,7 @@ public class TrollAI implements AI{
 					active = true;
 					moveToSpace = true;
 					throwing = true;
-					moveTo = troll.getRef().getPlayer().pd.pos;
+					moveTo = troll.getRef().getPlayer().getPD().getPos();
 					timer = activityTimer;
 					return;
 				}
@@ -220,48 +209,40 @@ public class TrollAI implements AI{
 	public void setChances(int level){
 		if(level == 1){
 			if(troll.getLevel() == 1){
-				//accuracy = 0.0f;
 				chanceMoveX = 80.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 5.0f;
 				chanceHole = 5.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 400;
 				fireTimer = 80;
 				hammerTimer = 80;
 				blastTimer = 80;
 				speed = 3f;
 			}if(troll.getLevel() == 2){
-				//accuracy = 0.0f;
 				chanceMoveX = 60.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 20.0f;
 				chanceHole = 10.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 320;
 				fireTimer = 50;
 				hammerTimer = 50;
 				blastTimer = 65;
 				speed = 4f;
 			}if(troll.getLevel() == 3){
-				//accuracy = 0.0f;
 				chanceMoveX = 60.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 15.0f;
 				chanceHole = 15.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 250;
 				fireTimer = 40;
 				hammerTimer = 30;
 				blastTimer = 50;
 				speed = 5f;
 			}if(troll.getLevel() == 4){
-				//accuracy = 0.0f;
 				chanceMoveX = 52.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 26.0f;
 				chanceHole = 22.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 180;
 				fireTimer = 20;
 				hammerTimer = 10;
@@ -271,48 +252,40 @@ public class TrollAI implements AI{
 		}
 		if(level == 2){
 			if(troll.getLevel() == 1){
-				//accuracy = 0.0f;
 				chanceMoveX = 10.0f;
 				chanceMoveY = 85.0f;
 				chanceAttackPlayer = 5.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 400;
 				fireTimer = 100;
 				hammerTimer = 80;
 				blastTimer = 80;
 				speed = 3f;
 			}if(troll.getLevel() == 2){
-				//accuracy = 0.0f;
 				chanceMoveX = 10.0f;
 				chanceMoveY = 60.0f;
 				chanceAttackPlayer = 30.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 320;
 				fireTimer = 50;
 				hammerTimer = 65;
 				blastTimer = 50;
 				speed = 4f;
 			}if(troll.getLevel() == 3){
-				//accuracy = 0.0f;
 				chanceMoveX = 10.0f;
 				chanceMoveY = 60.0f;
 				chanceAttackPlayer = 30.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 250;
 				fireTimer = 40;
 				hammerTimer = 50;
 				blastTimer = 30;
 				speed = 5f;
 			}if(troll.getLevel() == 4){
-				//accuracy = 0.0f;
 				chanceMoveX = 70.0f;
 				chanceMoveY = 0.0f;
 				chanceAttackPlayer = 30.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 180;
 				fireTimer = 20;
 				hammerTimer = 30;
@@ -322,48 +295,40 @@ public class TrollAI implements AI{
 		}
 		if(level == 3){
 			if(troll.getLevel() == 1){
-				//accuracy = 0.0f;
 				chanceMoveX = 85.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 5.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 400;
 				fireTimer = 80;
 				hammerTimer = 80;
 				blastTimer = 80;
 				speed = 3f;
 			}if(troll.getLevel() == 2){
-				//accuracy = 0.0f;
 				chanceMoveX = 60.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 30.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 320;
 				fireTimer = 50;
 				hammerTimer = 50;
 				blastTimer = 65;
 				speed = 4f;
 			}if(troll.getLevel() == 3){
-				//accuracy = 0.0f;
 				chanceMoveX = 60.0f;
 				chanceMoveY = 10.0f;
 				chanceAttackPlayer = 30.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 250;
 				fireTimer = 40;
 				hammerTimer = 30;
 				blastTimer = 50;
 				speed = 5f;
 			}if(troll.getLevel() == 4){
-				//accuracy = 0.0f;
 				chanceMoveX = 70.0f;
 				chanceMoveY = 0.0f;
 				chanceAttackPlayer = 30.0f;
 				chanceHole = 0.0f;
-				//chanceTroll = 0.0f;
 				activityTimer = 180;
 				fireTimer = 20;
 				hammerTimer = 10;

@@ -31,6 +31,26 @@ public abstract class Animation {
 		visible = true;
 	}
 	
+	public Image getImage(String str){
+		return ref.getParser().getImage(str);
+	}
+	
+	public void incrementCurrentIndex(){
+		currentIndex++;
+	}
+	
+	public void decrementCurrentIndex(){
+		currentIndex--;
+	}
+	
+	public void switchToIndex(int param){
+		currentIndex = param;
+	}
+	
+	public void makeInvisible(){
+		visible = false;
+	}
+	
 	public abstract void update();
 	
 	public void draw(Graphics2D g, Vec2 pos){
@@ -41,4 +61,9 @@ public abstract class Animation {
 	// getter methods
 	public Entity getRef(){return ref;}
 	public ArrayList<Image> getImages(){return images;}
+	public int getCurrentIndex(){return currentIndex;}
+	public boolean getVisible(){return visible;}
+	
+	// setter methods
+	public void setImages(ArrayList<Image> param){images=param;}
 }

@@ -31,52 +31,52 @@ public class Troll extends Entity{
 	
 	public void reset(){
 		if(first){
-			((TrollAI)ai).reset();
-			pd.pos = new Vec2(60,500);
-			((TrollAI)ai).active = true;
-			((TrollAI)ai).moveTo = new Vec2(600,500);
-			((TrollAI)ai).moveToSpace = true;
+			((TrollAI)getAI()).reset();
+			getPD().setPos(new Vec2(60,500));
+			((TrollAI)getAI()).active = true;
+			((TrollAI)getAI()).moveTo = new Vec2(600,500);
+			((TrollAI)getAI()).moveToSpace = true;
 		}else{
-			((TrollAI)ai).reset();
-			pd.pos = new Vec2(60,200);
-			((TrollAI)ai).active = true;
-			((TrollAI)ai).moveTo = new Vec2(500,200);
-			((TrollAI)ai).moveToSpace = true;
+			((TrollAI)getAI()).reset();
+			getPD().setPos(new Vec2(60,200));
+			((TrollAI)getAI()).active = true;
+			((TrollAI)getAI()).moveTo = new Vec2(500,200);
+			((TrollAI)getAI()).moveToSpace = true;
 		}
 	}
 	
 	public void changeToOne(){
 		level = 1;
-		TrollAnimation an = (TrollAnimation)anim;
+		TrollAnimation an = (TrollAnimation)getAnim();
 		an.switchToFace1();
 	}
 	
 	public void changeToTwo(){
 		level = 2;
-		TrollAnimation an = (TrollAnimation)anim;
+		TrollAnimation an = (TrollAnimation)getAnim();
 		an.switchToFace2();
 	}
 	
 	public void changeToThree(){
 		level = 3;
-		TrollAnimation an = (TrollAnimation)anim;
+		TrollAnimation an = (TrollAnimation)getAnim();
 		an.switchToFace3();
 	}
 	
 	public void changeToFour(){
 		level = 4;
-		TrollAnimation an = (TrollAnimation)anim;
+		TrollAnimation an = (TrollAnimation)getAnim();
 		an.switchToFace4();
 	}
 	
 	public void handleManifold(Manifold fold){
-		if(fold.one instanceof Player){
-			Player p = (Player)fold.one;
+		if(fold.getOne() instanceof Player){
+			Player p = (Player)fold.getOne();
 			if(!p.invulnerable){
 				int val = 500 * GlobalController.level;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
-				ref.extraAnimations.add(new LimitAnimation(a,fold.one.pd.pos,30,true));
+				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
 				p.invulnerable = true;
 				p.invulnerableTimer = 20;
 			}

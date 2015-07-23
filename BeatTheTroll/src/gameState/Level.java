@@ -27,7 +27,6 @@ public abstract class Level {
 	private CollisionEngine cole;
 	private Troll troll;
 	private Player player;
-	private Vec2 offset;
 	private boolean restart;
 	
 	public Level(GameStateManager g,Player p, Troll t){
@@ -39,7 +38,6 @@ public abstract class Level {
 		if(t != null)
 			troll.initForLevel(this);
 		bg = null;
-		offset = new Vec2();
 		gameEntities = new ArrayList<>();
 		playerObj = new ArrayList<>();
 		enemyObj = new ArrayList<>();

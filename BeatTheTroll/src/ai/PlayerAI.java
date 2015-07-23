@@ -6,7 +6,6 @@ package ai;
 
 import entities.Player;
 import physics.DynamicPhysicsData;
-import tests.PlayerTest;
 
 public class PlayerAI implements ReactToInputAI{
 	private Player player;
@@ -14,7 +13,6 @@ public class PlayerAI implements ReactToInputAI{
 		
 	public PlayerAI(Player p){
 		player = p;
-		up = false;
 		right = false;
 	}
 		
@@ -23,34 +21,32 @@ public class PlayerAI implements ReactToInputAI{
 	public void reactToKey(char key, boolean release){
 		if(release){
 			if(key == 'd' && right){
-				((DynamicPhysicsData)(player.pd)).acc.x = 0;
-				((DynamicPhysicsData)(player.pd)).vel.x = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 0;
 			}if(key == 'a' && !right){
-				((DynamicPhysicsData)(player.pd)).acc.x = 0;
-				((DynamicPhysicsData)(player.pd)).vel.x = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 0;
 			}
 		}else{
 			if(key == 'd' && !player.getCollidingRight()){
-				((DynamicPhysicsData)(player.pd)).acc.x = .5f;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = .5f;
 				right = true;
 				player.setCollidingLeft(false);
 			}if(key == 's' && !player.getCollidingDown()){
-				up = false;
 				player.setCollidingUp(false);
 				player.setCollidingRight(false);
 				player.setCollidingLeft(false);
-				((DynamicPhysicsData)(player.pd)).vel.y = ((DynamicPhysicsData)(player.pd)).maxVel.y;
+				((DynamicPhysicsData)(player.getPD())).getVel().y = ((DynamicPhysicsData)(player.getPD())).getMaxVel().y;
 			}if(key == 'a' && !player.getCollidingLeft()){
 				right = false;
 				player.setCollidingRight(false);
-				((DynamicPhysicsData)(player.pd)).acc.x = -.5f;
-			}if((key == 'w' || key == ' ') && !player.getCollidingUp() && !player.jumping){
-				up = true;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = -.5f;
+			}if((key == 'w' || key == ' ') && !player.getCollidingUp() && !player.getJumping()){
 				player.setCollidingDown(false);
 				player.setCollidingRight(false);
 				player.setCollidingLeft(false);
-				player.jumping = true;
-				((DynamicPhysicsData)(player.pd)).vel.y = -5.0f;
+				player.setJumping(true);
+				((DynamicPhysicsData)(player.getPD())).getVel().y = -5.0f;
 			}
 		}
 	}

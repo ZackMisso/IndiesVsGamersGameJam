@@ -31,9 +31,9 @@ public class CollisionEngine {
 	}
 	
 	public Manifold checkCollisionAABB(Entity one, Entity two){
-		if(one.pd.pos.x + one.pd.siz.x < two.pd.pos.x || one.pd.pos.x > two.pd.pos.x + two.pd.siz.x)
+		if(one.getPD().getPos().x + one.getPD().getSiz().x < two.getPD().getPos().x || one.getPD().getPos().x > two.getPD().getPos().x + two.getPD().getSiz().x)
 			return null;
-		if(one.pd.pos.y + one.pd.siz.y < two.pd.pos.y || one.pd.pos.y > two.pd.pos.y + two.pd.siz.y)
+		if(one.getPD().getPos().y + one.getPD().getSiz().y < two.getPD().getPos().y || one.getPD().getPos().y > two.getPD().getPos().y + two.getPD().getSiz().y)
 			return null;
 		return new Manifold(one, two);
 	}
@@ -54,31 +54,31 @@ public class CollisionEngine {
 		for(int i=0;i<folds.size();i++){
 			Entity one = folds.get(i).getOne();
 			Entity two = folds.get(i).getTwo();
-			Vec2 n = one.pd.cent().add(two.pd.cent().neg(true), true);
-			float oneExtent = one.pd.siz.x / 2;
-			float twoExtent = two.pd.siz.x / 2;
+			Vec2 n = one.getPD().cent().add(two.getPD().cent().neg(true), true);
+			float oneExtent = one.getPD().getSiz().x / 2;
+			float twoExtent = two.getPD().getSiz().x / 2;
 			float xOverlap = oneExtent + twoExtent - Functions.abs(n.x);
 			if(xOverlap > 0){
-				oneExtent = one.pd.siz.y / 2;
-				twoExtent = two.pd.siz.y / 2;
+				oneExtent = one.getPD().getSiz().y / 2;
+				twoExtent = two.getPD().getSiz().y / 2;
 				float yOverlap = twoExtent + oneExtent - Functions.abs(n.y);
 				if(yOverlap > 0){
 					if(Functions.abs(xOverlap) >= Functions.abs(yOverlap)){
 						Manifold fold = folds.get(i);
 						if(n.y > 0)
-							fold.norm = new Vec2(0, 1);
+							fold.setNorm(new Vec2(0, 1));
 						else
-							fold.norm = new Vec2(0, -1);
-						fold.pen = new Vec2(0,yOverlap);
+							fold.setNorm(new Vec2(0, -1));
+						fold.setPen(new Vec2(0,yOverlap));
 						one.handleManifold(fold);
 						two.handleManifold(fold);
 					}else{
 						Manifold fold = folds.get(i);
 						if(n.x < 0)
-							fold.norm = new Vec2(-1, 0);
+							fold.setNorm(new Vec2(-1, 0));
 						else
-							fold.norm = new Vec2(1, 0);
-						fold.pen = new Vec2(xOverlap,0);
+							fold.setNorm(new Vec2(1, 0));
+						fold.setPen(new Vec2(xOverlap,0));
 						one.handleManifold(fold);
 						two.handleManifold(fold);
 					}

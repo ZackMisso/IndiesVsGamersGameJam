@@ -11,9 +11,9 @@ public class BlastAnimation extends Animation{
 	public BlastAnimation(Entity en){
 		super(en);
 		if(((Blast)getRef()).getReverse())
-			getImages().add(en.getRef().gsm.parser.getImage("BlastReverse"));
+			getImages().add(en.getParser().getImage("BlastReverse"));
 		else
-			images.add(en.ref.gsm.parser.getImage("Blast"));
+			getImages().add(en.getParser().getImage("Blast"));
 	}
 	
 	public void update(){}

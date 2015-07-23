@@ -11,9 +11,9 @@ public class BlockAnimation extends Animation{
 	public BlockAnimation(Entity en, int type){
 		super(en);
 		if(type == 1)
-			images.add(en.getParser().getImage("Grass"));
+			getImages().add(en.getParser().getImage("Grass"));
 		else if(type == 2)
-			images.add(en.getParser().getImage("Block"));
+			getImages().add(en.getParser().getImage("Block"));
 	}
 	
 	public void update(){}

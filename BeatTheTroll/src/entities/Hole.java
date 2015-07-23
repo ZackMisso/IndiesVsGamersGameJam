@@ -20,7 +20,7 @@ public class Hole extends Entity{
 		}else{
 			anim = new HoleAnimation(this,sideways);
 			pd = new DynamicPhysicsData(pos, new Vec2(780,40));
-			((DynamicPhysicsData)pd).vel.y = -2;
+			((DynamicPhysicsData)getPD()).getVel().y = -2;
 		}
 	}
 	
