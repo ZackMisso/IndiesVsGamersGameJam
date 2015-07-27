@@ -22,9 +22,9 @@ public class Troll extends Entity{
 	public Troll(GameStateManager ref){
 		super(null);
 		gsmRef = ref;
-		ai = new TrollAI(this);
-		pd = new DynamicPhysicsData(new Vec2(400,400),new Vec2(100,100));
-		anim = new TrollAnimation(this);
+		setAI(new TrollAI(this));
+		setPD(new DynamicPhysicsData(new Vec2(400,400),new Vec2(100,100)));
+		setAnim(new TrollAnimation(this));
 		level = 1;
 		first = true;
 	}
@@ -33,15 +33,15 @@ public class Troll extends Entity{
 		if(first){
 			((TrollAI)getAI()).reset();
 			getPD().setPos(new Vec2(60,500));
-			((TrollAI)getAI()).active = true;
-			((TrollAI)getAI()).moveTo = new Vec2(600,500);
-			((TrollAI)getAI()).moveToSpace = true;
+			((TrollAI)getAI()).setActive(true);
+			((TrollAI)getAI()).setMoveTo(new Vec2(600,500));
+			((TrollAI)getAI()).setMoveToSpace(true);
 		}else{
 			((TrollAI)getAI()).reset();
 			getPD().setPos(new Vec2(60,200));
-			((TrollAI)getAI()).active = true;
-			((TrollAI)getAI()).moveTo = new Vec2(500,200);
-			((TrollAI)getAI()).moveToSpace = true;
+			((TrollAI)getAI()).setActive(true);
+			((TrollAI)getAI()).setMoveTo(new Vec2(500,200));
+			((TrollAI)getAI()).setMoveToSpace(true);
 		}
 	}
 	
@@ -72,13 +72,12 @@ public class Troll extends Entity{
 	public void handleManifold(Manifold fold){
 		if(fold.getOne() instanceof Player){
 			Player p = (Player)fold.getOne();
-			if(!p.invulnerable){
+			if(!p.getInvulnerable()){
 				int val = 500 * GlobalController.level;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
 				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
-				p.invulnerable = true;
-				p.invulnerableTimer = 20;
+				p.nowInvulnerable(20);
 			}
 		}
 	}

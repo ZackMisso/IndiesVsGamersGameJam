@@ -23,21 +23,21 @@ public class PlayerTestAI implements ReactToInputAI{
 	public void reactToKey(char key, boolean release){
 		if(release){
 			if(key == 'd' && right){
-				((DynamicPhysicsData)(player.pd)).acc.x = 0;
-				((DynamicPhysicsData)(player.pd)).vel.x = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 0;
 			}if(key == 's' && !up){
 				//((DynamicPhysicsData)(player.pd)).acc.y = 0;
 				//((DynamicPhysicsData)(player.pd)).vel.y = 0;
 			}if(key == 'a' && !right){
-				((DynamicPhysicsData)(player.pd)).acc.x = 0;
-				((DynamicPhysicsData)(player.pd)).vel.x = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 0;
 			}if(key == 'w' && up){
 				//((DynamicPhysicsData)(player.pd)).acc.y = 0;
 				//((DynamicPhysicsData)(player.pd)).vel.y = 0;
 			}
 		}else{
 			if(key == 'd' && !player.getCollidingRight()){
-				((DynamicPhysicsData)(player.pd)).acc.x = .2f;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = .2f;
 				//((DynamicPhysicsData)(player.pd)).vel.x = 0f;
 				//System.out.println("WHAT");
 				right = true;
@@ -48,20 +48,20 @@ public class PlayerTestAI implements ReactToInputAI{
 				player.setCollidingRight(false);
 				player.setCollidingLeft(false);
 				//((DynamicPhysicsData)(player.pd)).acc.y = .5f;
-				((DynamicPhysicsData)(player.pd)).vel.y = ((DynamicPhysicsData)(player.pd)).maxVel.y;
+				((DynamicPhysicsData)(player.getPD())).getVel().y = ((DynamicPhysicsData)(player.getPD())).getMaxVel().y;
 			}if(key == 'a' && !player.getCollidingLeft()){
 				right = false;
 				player.setCollidingRight(false);
-				((DynamicPhysicsData)(player.pd)).acc.x = -.2f;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = -.2f;
 				//((DynamicPhysicsData)(player.pd)).vel.x = 0f; // -
 			}if(key == 'w' && !player.getCollidingUp() && !player.getJumping()){
 				up = true;
 				player.setCollidingDown(false);
 				player.setCollidingRight(false);
 				player.setCollidingLeft(false);
-				player.jumping = true;
+				player.setJumping(true);
 				//((DynamicPhysicsData)(player.pd)).acc.y = -.5f;
-				((DynamicPhysicsData)(player.pd)).vel.y = -5.0f; // -
+				((DynamicPhysicsData)(player.getPD())).getVel().y = -5.0f; // -
 			}
 		}
 	}

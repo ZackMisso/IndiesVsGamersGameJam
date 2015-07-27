@@ -20,8 +20,8 @@ public class Blast extends Entity{
 	public Blast(Level ref, Vec2 pos,boolean rev){
 		super(ref);
 		reverse = rev;
-		anim = new BlastAnimation(this);
-		ai = null;
+		setAnim(new BlastAnimation(this));
+		setAI(null);
 		DynamicPhysicsData tmp;
 		if(reverse){
 			tmp = new DynamicPhysicsData(pos, new Vec2(20,20));
@@ -30,8 +30,8 @@ public class Blast extends Entity{
 			tmp = new DynamicPhysicsData(pos, new Vec2(20,20));
 			tmp.getVel().x = 2.0f;
 		}
-		pd = tmp;
-		harmfulToP = true;
+		setPD(tmp);
+		setHarmfulToP(true);
 	}
 	
 	public void update(){
@@ -44,13 +44,12 @@ public class Blast extends Entity{
 		if(fold.getOne() instanceof Player || fold.getOne() instanceof PlayerTest){
 			getRef().addEntityToRemove(this);
 			Player p = (Player)fold.getOne();
-			if(!p.invulnerable){
+			if(!p.getInvulnerable()){
 				int val = GlobalController.level * 200;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
-				getRef().addExtraAnimation(new LimitAnimation(a,fold.one.pd.pos,30,true));
-				p.invulnerable = true;
-				p.invulnerableTimer = 20;
+				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
+				p.nowInvulnerable(20);
 			}
 		}
 	}

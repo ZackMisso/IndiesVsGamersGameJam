@@ -18,7 +18,7 @@ import tests.PlayerTest;
 public class Hammer extends Entity{
 	public Hammer(Level lev, Vec2 pos){
 		super(lev);
-		ai = null;
+		setAI(null);
 		DynamicPhysicsData tmp = new DynamicPhysicsData(pos, new Vec2(40,40));
 		tmp.getAcc().y = .3f;
 		tmp.getVel().y = -2f * RNG.getNextFloat();
@@ -28,23 +28,23 @@ public class Hammer extends Entity{
 			tmp.getVel().x *= -1;
 			rev = true;
 		}
-		pd = tmp;
-		anim = new HammerAnimation(this,rev);
-		harmfulToP = true;
+		setPD(tmp);
+		setAnim(new HammerAnimation(this,rev));
+		setHarmfulToP(true);
 	}
 	
 	public Hammer(Level lev, Vec2 pos,boolean rev){
 		super(lev);
-		ai = null;
+		setAI(null);
 		DynamicPhysicsData tmp = new DynamicPhysicsData(pos, new Vec2(40,40));
 		tmp.getAcc().y = .03f;
 		tmp.getVel().y = -2f * RNG.getNextFloat();
 		tmp.getVel().x = RNG.getNextFloat();
 		if(RNG.getNextBool())
 			tmp.getVel().x *= -1;
-		pd = tmp;
-		anim = new HammerAnimation(this,rev);
-		harmfulToP = true;
+		setPD(tmp);
+		setAnim(new HammerAnimation(this,rev));
+		setHarmfulToP(true);
 	}
 	
 	public void update(){

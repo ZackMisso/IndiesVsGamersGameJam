@@ -21,13 +21,13 @@ public class PlayerTest extends Entity{
 	
 	public PlayerTest(){
 		super(null);
-		anim = new TestAnimation(this, Color.BLUE);
-		ai = new PlayerTestAI(this);
+		setAnim(new TestAnimation(this, Color.BLUE));
+		setAI(new PlayerTestAI(this));
 		//ai = new PlayerFallingTestAI(this);
-		pd = new DynamicPhysicsData(new Vec2(300,400),new Vec2(32,32));
-		DynamicPhysicsData tmp = (DynamicPhysicsData)pd;
-		tmp.maxVel = new Vec2(3.0f,5.0f);
-		tmp.acc = new Vec2(0,.1f);
+		setPD(new DynamicPhysicsData(new Vec2(300,400),new Vec2(32,32)));
+		DynamicPhysicsData tmp = (DynamicPhysicsData)getPD();
+		tmp.setMaxVel(new Vec2(3.0f,5.0f));
+		tmp.setAcc(new Vec2(0,.1f));
 		//pd.cb = null;
 	}
 	
@@ -38,7 +38,7 @@ public class PlayerTest extends Entity{
 	public void handleManifold(Manifold fold){
 		//System.out.println("Pen "+fold.pen.toString());
 		//System.out.println("Pos "+pd.pos.toString());
-		if(fold.two instanceof Collidable){
+		if(fold.getTwo() instanceof Collidable){
 			if(fold.getNorm().x != 0){
 				fold.getPen().x *= fold.getNorm().x;
 				fold.getPen().x += fold.getNorm().x;
@@ -46,7 +46,7 @@ public class PlayerTest extends Entity{
 					collidingLeft = true;
 				else
 					collidingRight = true;
-				((DynamicPhysicsData)pd).vel.x = 0;
+				((DynamicPhysicsData)getPD()).getVel().x = 0;
 				//((DynamicPhysicsData)pd).acc.x = 0;
 			}
 			if(fold.getNorm().y != 0){
@@ -58,10 +58,10 @@ public class PlayerTest extends Entity{
 					collidingDown = true;
 					jumping = false;
 				}
-				((DynamicPhysicsData)pd).vel.y = 0;
+				((DynamicPhysicsData)getPD()).getVel().y = 0;
 				//((DynamicPhysicsData)pd).acc.y = 0;
 			}
-			pd.pos.add(fold.pen);
+			getPD().getPos().add(fold.getPen());
 		}
 		//System.out.println("Pos "+pd.pos.toString());
 		//if(fold.pen.x != 0.0f && fold.pen.y != 0.0f){
@@ -70,7 +70,7 @@ public class PlayerTest extends Entity{
 	}
 	
 	public void resetToDefaultAnimation(){
-		anim = new TestAnimation(this, Color.BLUE);
+		setAnim(new TestAnimation(this, Color.BLUE));
 	}
 	
 	// getter methods

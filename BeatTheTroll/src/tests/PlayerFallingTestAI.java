@@ -24,22 +24,22 @@ public class PlayerFallingTestAI implements ReactToInputAI{
 	public void reactToKey(char key, boolean release){
 		if(release){
 			if(key == 'd' && right){
-				((DynamicPhysicsData)(player.pd)).acc.x = 0;
-				((DynamicPhysicsData)(player.pd)).vel.x = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 0;
 			}if(key == 's' && !up){
-				((DynamicPhysicsData)(player.pd)).acc.y = 0;
-				((DynamicPhysicsData)(player.pd)).vel.y = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().y = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().y = 0;
 			}if(key == 'a' && !right){
-				((DynamicPhysicsData)(player.pd)).acc.x = 0;
-				((DynamicPhysicsData)(player.pd)).vel.x = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().x = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 0;
 			}if(key == 'w' || key == ' ' && up){
-				((DynamicPhysicsData)(player.pd)).acc.y = 0;
-				((DynamicPhysicsData)(player.pd)).vel.y = 0;
+				((DynamicPhysicsData)(player.getPD())).getAcc().y = 0;
+				((DynamicPhysicsData)(player.getPD())).getVel().y = 0;
 			}
 		}else{
 			if(key == 'd' && !player.getCollidingRight()){
 				//((DynamicPhysicsData)(player.pd)).acc.x = .5f;
-				((DynamicPhysicsData)(player.pd)).vel.x = 1.8f;
+				((DynamicPhysicsData)(player.getPD())).getVel().x = 1.8f;
 				//System.out.println("WHAT");
 				right = true;
 				player.setCollidingLeft(false);
@@ -49,12 +49,12 @@ public class PlayerFallingTestAI implements ReactToInputAI{
 				player.setCollidingRight(false);
 				player.setCollidingLeft(false);
 				//((DynamicPhysicsData)(player.pd)).acc.y = .5f;
-				((DynamicPhysicsData)(player.pd)).vel.y = 3.2f;
+				((DynamicPhysicsData)(player.getPD())).getVel().y = 3.2f;
 			}if(key == 'a' && !player.getCollidingLeft()){
 				right = false;
 				player.setCollidingRight(false);
 				//((DynamicPhysicsData)(player.pd)).acc.x = -.5f;
-				((DynamicPhysicsData)(player.pd)).vel.x = -1.8f; // -
+				((DynamicPhysicsData)(player.getPD())).getVel().x = -1.8f; // -
 			}if(key == 'w' || key == ' ' && !player.getCollidingUp()){
 				up = true;
 				player.setCollidingDown(false);
@@ -62,7 +62,7 @@ public class PlayerFallingTestAI implements ReactToInputAI{
 				player.setCollidingLeft(false);
 				//player.jumping = true;
 				//((DynamicPhysicsData)(player.pd)).acc.y = -.5f;
-				((DynamicPhysicsData)(player.pd)).vel.y = -1.0f; // -
+				((DynamicPhysicsData)(player.getPD())).getVel().y = -1.0f; // -
 			}
 		}
 	}

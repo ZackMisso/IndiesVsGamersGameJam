@@ -11,6 +11,7 @@ import animation.Animation;
 import art.ImageParser;
 import gameState.Level;
 import math.Vec2;
+import physics.DynamicPhysicsData;
 import physics.Manifold;
 import physics.PhysicsData;
 import physics.SimplePhysicsData;
@@ -94,6 +95,13 @@ public abstract class Entity {
 		anim.update();
 	}
 	
+	public void createDynamicPhysics(Vec2 pos,Vec2 siz,Vec2 vel,Vec2 acc){
+		DynamicPhysicsData data = new DynamicPhysicsData(pos,siz);
+		data.setVel(vel);
+		data.setAcc(acc);
+		pd = data;
+	}
+	
 	public void setDead(){
 		alive = false;
 	}
@@ -117,6 +125,10 @@ public abstract class Entity {
 	public int getDamage(){return damage;}
 	
 	// setter methods
+	public void setRef(Level param){ref=param;}
+	public void setAnim(Animation param){anim=param;}
+	public void setPD(PhysicsData param){pd=param;}
+	public void setAI(AI param){ai=param;}
 	public void setHarmfulToP(boolean param){harmfulToP = param;}
 	public void setDamage(int param){damage=param;}
 }

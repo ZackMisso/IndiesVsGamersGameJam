@@ -337,4 +337,9 @@ public class TrollAI implements AI{
 			}
 		}
 	}
+	
+	// setter methods
+	public void setMoveTo(Vec2 param){moveTo=param;}
+	public void setMoveToSpace(boolean param){moveToSpace=param;}
+	public void setActive(boolean param){active=param;}
 }

@@ -11,7 +11,6 @@ import animation.TextAnimation;
 import gameState.Level;
 import math.Vec2;
 import misc.GlobalController;
-import physics.DynamicPhysicsData;
 import physics.Manifold;
 import tests.PlayerTest;
 
@@ -20,7 +19,10 @@ public class Bomb extends Entity{
 	private boolean onTimer;
 	
 	public Bomb(Level ref,Vec2 pos,Vec2 v){
-		super(ref,new BombAnimation(this),null,null);
+		super(null);
+		setRef(ref);
+		setAnim(new BombAnimation(this));
+		setAI(null);
 		createDynamicPhysics(pos,new Vec2(36,50),v,new Vec2());
 		onTimer = false;
 	}
@@ -48,16 +50,19 @@ public class Bomb extends Entity{
 			explode();
 			getRef().addEntityToRemove(this);
 			Player p = (Player)fold.getOne();
-			if(!p.invulnerable){
+			if(!p.getInvulnerable()){
 				int val = 100 * GlobalController.level;
 				GlobalController.score -= val;
 				TextAnimation a = new TextAnimation("-"+val);
 				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
-				p.invulnerable = true;
-				p.invulnerableTimer = 20;
+				p.nowInvulnerable(20);
 			}
 		}
 	}
 	
 	public void resetToDefaultAnimation(){}
+	
+	// setter methods
+	public void setTimeToExplode(int param){timeToExplode=param;}
+	public void setOnTimer(boolean param){onTimer=param;}
 }

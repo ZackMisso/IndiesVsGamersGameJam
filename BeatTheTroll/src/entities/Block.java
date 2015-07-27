@@ -13,7 +13,11 @@ import physics.SimplePhysicsData;
 
 public class Block extends Entity implements Collidable{
 	public Block(Level lev,Vec2 pos, int type){
-		super(lev,new BlockAnimation(this,type),pos,new Vec2(),null);
+		super(null);
+		setRef(lev);
+		setAnim(new BlockAnimation(this,type));
+		setPD(new SimplePhysicsData(pos,new Vec2()));
+		setAI(null);
 	}
 	
 	public void handleManifold(Manifold fold){}

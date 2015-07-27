@@ -64,8 +64,8 @@ public class LevelTwo extends Level{
 			Vec2 p = new Vec2(RNG.getNextFloat() * 680 + 80, 700);
 			Vec2 v = new Vec2(0,-2.2f);
 			Bomb b = new Bomb(this,p,v);
-			b.onTimer = true;
-			b.timeToExplode = 240 + (int)(RNG.getNextFloat() * 20);
+			b.setOnTimer(true);
+			b.setTimeToExplode(240 + (int)(RNG.getNextFloat() * 20));
 			addEntity(b);
 			bombTimer = 55 - 12 * getTroll().getLevel();
 		}

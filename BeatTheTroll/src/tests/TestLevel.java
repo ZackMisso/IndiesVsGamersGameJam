@@ -17,7 +17,7 @@ import entities.Troll;
 import gameState.GameStateManager;
 import gameState.Level;
 import math.Vec2;
-import physics.CollisionEngine;
+//import physics.CollisionEngine;
 
 public class TestLevel extends Level{
 	//private CollisionEngine cole;
@@ -36,7 +36,7 @@ public class TestLevel extends Level{
 	public void init(){
 		PlayerTest play = new PlayerTest();
 		addEntity(play);
-		play.pd.pos = new Vec2(420,260);
+		play.getPD().setPos(new Vec2(420,260));
 		for(int i=0;i<13;i++){
 			Block block = new Block(this,new Vec2(232 + 32 * i,500),2);
 			addEntity(block);
@@ -49,7 +49,7 @@ public class TestLevel extends Level{
 		//	gameEntities.add(new Block(this,new Vec2(81 + i*32,536),1));
 		//for(int i=0;i<23;i++)
 		//	gameEntities.add(new Block(this,new Vec2(81 + i*32,568),1));
-		addInputAI(((ReactToInputAI)play.ai);
+		addInputAI(((ReactToInputAI)play.getAI()));
 		addEntity(new Hammer(this,new Vec2(400,400),false));
 		addEntity(new InvisEntity(this,new Vec2(120-40,121),new Vec2(40,480)));
 		//cole = new CollisionEngine();
@@ -77,18 +77,18 @@ public class TestLevel extends Level{
 		updateEntities();
 		updateExtraAnimations();
 		updateEntitiesToRemove();
-		for(int i=0;i<gameEntities.size();i++)
-			gameEntities.get(i).update();
-		for(int i=0;i<extraAnimations.size();i++){
-			extraAnimations.get(i).update();
-			if(extraAnimations.get(i).checkRemove())
-				extraAnimations.remove(i--);
-		}
-		for(int i = 0;i<entitiesToRemove.size();i++){
-			//System.out.println("REMOVING ENTITY");
-			gameEntities.remove(entitiesToRemove.get(0));
-			entitiesToRemove.remove(0);
-		}
+		//for(int i=0;i<gameEntities.size();i++)
+		//	gameEntities.get(i).update();
+		//for(int i=0;i<extraAnimations.size();i++){
+		//	extraAnimations.get(i).update();
+		//	if(extraAnimations.get(i).checkRemove())
+		//		extraAnimations.remove(i--);
+		//}
+		//for(int i = 0;i<entitiesToRemove.size();i++){
+		//	//System.out.println("REMOVING ENTITY");
+		//	gameEntities.remove(entitiesToRemove.get(0));
+		//	entitiesToRemove.remove(0);
+		//}
 		//cole.update(gameEntities.get(0), null, gameEntities);
 	}
 }
