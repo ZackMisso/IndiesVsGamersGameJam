@@ -16,19 +16,16 @@ import entities.InvisEntity;
 import entities.Player;
 import entities.Troll;
 import math.Vec2;
-import physics.CollisionEngine;
 
 public class LevelThree extends Level{
-	public CollisionEngine cole;
-	public int transitionTimer;
-	public boolean holeOpen;
+	private int transitionTimer;
+	private boolean holeOpen;
 	
 	public LevelThree(GameStateManager g,Player p, Troll t){
 		super(g,p,t);
 		setBG(new Color(.2f,.3f,.5f));
 		transitionTimer = 30*60 * t.getLevel(); // one/two/three/four minute
 		holeOpen = false;
-		cole=new CollisionEngine();
 	}
 	
 	public void init(){
@@ -43,7 +40,6 @@ public class LevelThree extends Level{
 		addEntity(new InvisEntity(this,new Vec2(80-40,121),new Vec2(40,480)));
 		addEntity(new InvisEntity(this,new Vec2(800,121),new Vec2(40,480)));
 		addInputAI((ReactToInputAI)getPlayer().getAI());
-		cole = new CollisionEngine();
 	}
 	
 	public void update(){

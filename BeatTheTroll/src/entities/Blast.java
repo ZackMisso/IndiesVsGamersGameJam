@@ -45,8 +45,8 @@ public class Blast extends Entity{
 			getRef().addEntityToRemove(this);
 			Player p = (Player)fold.getOne();
 			if(!p.getInvulnerable()){
-				int val = GlobalController.level * 200;
-				GlobalController.score -= val;
+				int val = getRef().getGSM().getStatus().getLevel() * 200;
+				getRef().getGSM().getStatus().addToScore(-val);
 				TextAnimation a = new TextAnimation("-"+val);
 				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
 				p.nowInvulnerable(20);

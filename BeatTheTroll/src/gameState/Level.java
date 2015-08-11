@@ -12,7 +12,6 @@ import animation.LimitAnimation;
 import entities.Entity;
 import entities.Player;
 import entities.Troll;
-import math.Vec2;
 import physics.CollisionEngine;
 
 public abstract class Level {

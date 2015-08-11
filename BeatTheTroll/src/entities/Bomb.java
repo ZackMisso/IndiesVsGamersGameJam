@@ -51,8 +51,8 @@ public class Bomb extends Entity{
 			getRef().addEntityToRemove(this);
 			Player p = (Player)fold.getOne();
 			if(!p.getInvulnerable()){
-				int val = 100 * GlobalController.level;
-				GlobalController.score -= val;
+				int val = 100 * getRef().getGSM().getStatus().getLevel();
+				getRef().getGSM().getStatus().addToScore(-val);
 				TextAnimation a = new TextAnimation("-"+val);
 				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
 				p.nowInvulnerable(20);

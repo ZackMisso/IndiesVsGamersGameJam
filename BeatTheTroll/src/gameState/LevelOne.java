@@ -17,6 +17,7 @@ import entities.Player;
 import entities.Troll;
 import math.Vec2;
 import misc.GlobalController;
+import misc.PlayerStatus;
 import misc.RNG;
 
 public class LevelOne extends Level{
@@ -43,32 +44,33 @@ public class LevelOne extends Level{
 	}
 	
 	public void update(){
-		if(GlobalController.gameOver == true)
+		PlayerStatus status = getGSM().getStatus();
+		if(status.getGameOver())
 			return;
 		hammerTimer--;
-		GlobalController.timeTillAttack--;
-		if(GlobalController.timeTillAttack <= 0){
+		status.decrementTimeTillAttack();
+		if(status.getTimeTillAttack() <= 0){
 			if(getTroll().getLevel() == 1){
-				GlobalController.initToTwo();
-				GlobalController.level = 2;
+				status.initToTwo();
+				status.setLevel(2);
 				getTroll().changeToTwo();
 				addEntity(new Hole(this,new Vec2(80,480),false));
 			}
 			else if(getTroll().getLevel() == 2){
-				GlobalController.initToThree();
+				status.initToThree();
 				getTroll().changeToThree();
-				GlobalController.level = 3;
+				status.setLevel(3);
 				addEntity(new Hole(this,new Vec2(80,480),false));
 				
 			}else if(getTroll().getLevel() == 3){
-				GlobalController.initToFour();
+				status.initToFour();
 				getTroll().changeToFour();
-				GlobalController.level = 4;
+				status.setLevel(4);
 				addEntity(new Hole(this,new Vec2(80,700),false));
 			}else if(getTroll().getLevel() == 4){
-				GlobalController.level = 4;
-				GlobalController.gameOver = true;
-				GlobalController.addHighScore();
+				status.setLevel(4);
+				status.setGameOver(true);
+				GlobalController.addHighScore(status.getScore());
 			}
 		}
 		if(hammerTimer <= 0){
@@ -90,12 +92,12 @@ public class LevelOne extends Level{
 	
 	public void draw(Graphics2D g){
 		super.draw(g);
-		if(GlobalController.gameOver){
+		if(getGSM().getStatus().getGameOver()){
 			g.setColor(Color.BLACK);
 			g.fillRect(150, 180, 560, 300);
 			g.setColor(Color.GREEN);
 			g.drawString("Thank You for Playing!", 340, 250);
-			g.drawString("Congratulations you beat the Troll and managed to keep "+GlobalController.score+" Points", 200, 300);
+			g.drawString("Congratulations you beat the Troll and managed to keep "+getGSM().getStatus().getScore()+" Points", 200, 300);
 			g.drawString("Press 'r' to restart the game and try to go for a higher score", 240, 350);
 		}
 	}

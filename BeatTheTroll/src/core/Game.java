@@ -7,9 +7,9 @@ package core;
 import javax.swing.JFrame;
 
 public class Game {
-	public final JFrame window;
-	public final GameThread thread;
-	public final KeyboardListener key;
+	private final JFrame window;
+	private final GameThread thread;
+	private final KeyboardListener key;
 	//public final MousepadListener mouse; // never used
 	
 	public Game(int x, int y, String title){
@@ -28,4 +28,6 @@ public class Game {
 		//window.addMouseListener(mouse);
 		new Thread(thread).start();
 	}
+	
+	public JFrame getWindow(){return window;}
 }

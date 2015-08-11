@@ -73,8 +73,8 @@ public class Troll extends Entity{
 		if(fold.getOne() instanceof Player){
 			Player p = (Player)fold.getOne();
 			if(!p.getInvulnerable()){
-				int val = 500 * GlobalController.level;
-				GlobalController.score -= val;
+				int val = 500 * gsmRef.getStatus().getLevel();
+				gsmRef.getStatus().addToScore(-val);
 				TextAnimation a = new TextAnimation("-"+val);
 				getRef().addExtraAnimation(new LimitAnimation(a,fold.getOne().getPD().getPos(),30,true));
 				p.nowInvulnerable(20);

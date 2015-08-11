@@ -17,7 +17,6 @@ import entities.Player;
 import entities.Troll;
 import entities.UIButton;
 import math.Vec2;
-import misc.GlobalController;
 import misc.PlayerStatus;
 import tests.TestLevel;
 
@@ -48,7 +47,7 @@ public class GameStateManager {
 		musicCred = "Music : Carson Carter";
 		sound = new SoundEngine();
 		level = 0;
-		GlobalController.initToOne();
+		status.initToOne();
 		startMusic();
 		transitionToInit();
 	}
@@ -89,8 +88,8 @@ public class GameStateManager {
 		g.drawString("w, space - jump", 20, 705);
 		g.drawString("r - restart", 20, 725);
 		g.setColor(Color.YELLOW);
-		g.drawString("Score :: " + GlobalController.score, 90, 140);
-		g.drawString("Time Left :: " + GlobalController.timeTillAttack/60, 695, 140);
+		g.drawString("Score :: " + status.getScore(), 90, 140);
+		g.drawString("Time Left :: " + status.getTimeTillAttack()/60, 695, 140);
 		joystick.draw(g);
 		startButton.draw(g);
 		selectButton.draw(g);
@@ -99,8 +98,8 @@ public class GameStateManager {
 	}
 	
 	public void restart(){
-		GlobalController.score = 1000000;
-		GlobalController.gameOver = false;
+		status.setScore(500000);
+		status.setGameOver(false);
 		player = new Player(this);
 		troll = new Troll(this);
 		level = 0;
@@ -113,14 +112,14 @@ public class GameStateManager {
 	}
 	
 	public void handleKey(char key, boolean release){
-		if(key == 'r' && GlobalController.canRestart)
+		if(key == 'r' && status.getCanRestart())
 			restart();
 		if(currentLevel != null)
 			currentLevel.handleKey(key, release);
 	}
 	
 	public void transition(){
-		GlobalController.canRestart = true;
+		status.setCanRestart(true);
 		if(level == 0){
 			level = 1;
 			transitionToLevel1();
@@ -172,5 +171,6 @@ public class GameStateManager {
 	}
 	
 	// getter methods
+	public PlayerStatus getStatus(){return status;}
 	public ImageParser getParser(){return parser;}
 }

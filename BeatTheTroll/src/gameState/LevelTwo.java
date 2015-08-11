@@ -18,7 +18,6 @@ import entities.Player;
 import entities.Troll;
 import math.Vec2;
 import misc.RNG;
-import physics.CollisionEngine;
 
 public class LevelTwo extends Level{
 	private int cloudTimer;

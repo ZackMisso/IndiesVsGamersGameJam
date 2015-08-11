@@ -11,8 +11,8 @@ import math.Vec2;
 import physics.Manifold;
 
 public class Explosion extends Entity{
-	public boolean harmful;
-	public long timer;
+	private boolean harmful;
+	private long timer;
 	
 	public Explosion(Level l, Animation a, Vec2 pos, Vec2 siz, AI i){
 		super(l,a,pos,siz,i);

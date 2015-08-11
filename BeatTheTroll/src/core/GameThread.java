@@ -33,7 +33,7 @@ public class GameThread extends JPanel implements Runnable {
 		BufferedImage backBuffer = new BufferedImage(880, 800, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g2 = (Graphics2D)backBuffer.getGraphics();
 			gsm.draw(g2);
-		g.drawImage(backBuffer, 0, 0, game.window);
+		g.drawImage(backBuffer, 0, 0, game.getWindow());
 	}
 	
 	public void init(){
@@ -60,7 +60,7 @@ public class GameThread extends JPanel implements Runnable {
 			}
 			if(shouldRender){
 				frames++;
-				paint(game.window.getGraphics());
+				paint(game.getWindow().getGraphics());
 			}
 			if(System.currentTimeMillis() - lastTimer >= 1000){
 				lastTimer += 1000;
